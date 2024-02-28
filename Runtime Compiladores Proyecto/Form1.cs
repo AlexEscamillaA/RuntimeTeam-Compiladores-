@@ -1,4 +1,4 @@
-namespace Runtime_Compiladores_Proyecto
+ï»¿namespace Runtime_Compiladores_Proyecto
 {
     public partial class Form1 : Form
     {
@@ -22,6 +22,8 @@ namespace Runtime_Compiladores_Proyecto
 
         }
 
+        // PRIMERA REVISIÃ“N, INFIJA A POSFIJA
+
         private void conversionButton_Click(object sender, EventArgs e)
         {
             string expresionRegular = expresionRegularResponse.Text;
@@ -39,31 +41,31 @@ namespace Runtime_Compiladores_Proyecto
             {
                 switch (caracter)
                 {
-                    case '(': // Si es un inicio de paréntesis
+                    case '(': // Si es un inicio de parÃ©ntesis
                         pilaOperadores.Push(caracter); // Lo mete a la pila
                         break;
-                    case ')': // Si es el final del paréntesis
-                        while (pilaOperadores.Count > 0 && pilaOperadores.Peek() != '(') // Extrae todo lo que había en el paréntesis
-                            expresionPosfija += pilaOperadores.Pop(); // Lo extraído lo mete a la expresión resultado (posfija)
+                    case ')': // Si es el final del parÃ©ntesis
+                        while (pilaOperadores.Count > 0 && pilaOperadores.Peek() != '(') // Extrae todo lo que habÃ­a en el parÃ©ntesis
+                            expresionPosfija += pilaOperadores.Pop(); // Lo extraÃ­do lo mete a la expresiÃ³n resultado (posfija)
                         pilaOperadores.Pop();
                         break;
-                    default: // Si es un número, letra u operador
+                    default: // Si es un nÃºmero, letra u operador
                         if (Char.IsLetterOrDigit(caracter)) // Si es un numero o una letra
-                            expresionPosfija += caracter; // Lo mete a la expresión resultado
+                            expresionPosfija += caracter; // Lo mete a la expresiÃ³n resultado
                         else if (Jerarquia(caracter) != 0)
                         {
                             bool band = true;
                             while (band)
                             {
                                 // Diferentes condiciones de operadores donde:
-                                // 1. No hay nada en la pila 2. El operador es el inicio de un paréntesis 3. Si la jerarquía del caracter iterado es mayor a la jerarquía del pico de la pila
+                                // 1. No hay nada en la pila 2. El operador es el inicio de un parÃ©ntesis 3. Si la jerarquÃ­a del caracter iterado es mayor a la jerarquÃ­a del pico de la pila
                                 if (pilaOperadores.Count == 0 || pilaOperadores.Peek() == '(' || Jerarquia(caracter) > Jerarquia(pilaOperadores.Peek()))
                                 {
                                     pilaOperadores.Push(caracter); // Mete el caracter a la pila y cambia la banda
                                     band = false;
                                 }
                                 else
-                                    expresionPosfija += pilaOperadores.Pop(); // Sino, solamente mete el operador pico de la pila a la expresión resultado
+                                    expresionPosfija += pilaOperadores.Pop(); // Sino, solamente mete el operador pico de la pila a la expresiÃ³n resultado
                             }
                         }
                         break;
@@ -72,10 +74,10 @@ namespace Runtime_Compiladores_Proyecto
 
             while (pilaOperadores.Count > 0) // Si quedan operadores en la pila
             {
-                expresionPosfija += pilaOperadores.Pop(); // Los operadores que quedan se meten a la expresión posfija
+                expresionPosfija += pilaOperadores.Pop(); // Los operadores que quedan se meten a la expresiÃ³n posfija
             }
 
-            return expresionPosfija.ToString(); // Se retorna la expresión hecha
+            return expresionPosfija.ToString(); // Se retorna la expresiÃ³n hecha
         }
 
         public static string ExpansionAlternativas(string alternativas)
@@ -84,14 +86,14 @@ namespace Runtime_Compiladores_Proyecto
             int caracterInicial = (int)alternativas[0];
             int caracterFinal = (int)alternativas[2]; // a - z <--- Casteamos a Int para obtener el valor en ASCII
 
-            // Agregamos las variables de un cierto rango [XX-XX] ya sean números o letras
+            // Agregamos las variables de un cierto rango [XX-XX] ya sean nÃºmeros o letras
             for (int caracter = caracterInicial; caracter <= caracterFinal; caracter++)
             {
-                resultado += (char)caracter; // Se devuelve el entero a carácter y se añade
+                resultado += (char)caracter; // Se devuelve el entero a carÃ¡cter y se aÃ±ade
                 if (caracter != caracterFinal) // Se pone la alternativa solo sino es el final
                     resultado += '|';
             }
-            return '(' + resultado + ')'; // Se ponen las alternativas en un string con paréntesis
+            return '(' + resultado + ')'; // Se ponen las alternativas en un string con parÃ©ntesis
         }
 
         public static string SeleccionAlternativas(string cadena)
@@ -101,15 +103,15 @@ namespace Runtime_Compiladores_Proyecto
             if (cadena[0] == '[') // Si tiene corchete
             {
                 resultado = cadena.Split('[', ']')[1]; // Deja las letras quitando los corchetes
-                resultado = string.Join('|', resultado.ToList()); // Agrega la selección de alternativas en medio de las letras
+                resultado = string.Join('|', resultado.ToList()); // Agrega la selecciÃ³n de alternativas en medio de las letras
             }
-            else if (cadena[0] == '(') // Si tiene paréntesis
+            else if (cadena[0] == '(') // Si tiene parÃ©ntesis
             {
-                resultado = cadena.Split('(', ')')[1]; // Deja las letras quitando los paréntesis
-                resultado = string.Join('&', resultado.ToList()); // Agrega la selección 
+                resultado = cadena.Split('(', ')')[1]; // Deja las letras quitando los parÃ©ntesis
+                resultado = string.Join('&', resultado.ToList()); // Agrega la selecciÃ³n 
             }
 
-            return '(' + resultado + ')'; // Agrega los paréntesis de inicio y fin
+            return '(' + resultado + ')'; // Agrega los parÃ©ntesis de inicio y fin
         }
 
         public static string convierteExplicita(string expresionRegular)
@@ -123,8 +125,8 @@ namespace Runtime_Compiladores_Proyecto
                     // Subcadena que toma lo que hay dentro de los corchetes
                     string cadenaSeleccionAlt = expresionRegular.Substring(posicion + 1, expresionRegular.Substring(posicion).IndexOf(']') - 1);
 
-                    if (expresionExplicita != "" && expresionExplicita.Last() == ')') // Si la cadena no está vacía y hay un paréntesis al final
-                        expresionExplicita += '&'; // Se le agrega un paréntesis
+                    if (expresionExplicita != "" && expresionExplicita.Last() == ')') // Si la cadena no estÃ¡ vacÃ­a y hay un parÃ©ntesis al final
+                        expresionExplicita += '&'; // Se le agrega un parÃ©ntesis
                     if (cadenaSeleccionAlt.Contains('-')) // Si contiene un - 
                         expresionExplicita += ExpansionAlternativas(cadenaSeleccionAlt); // Se agregan todas las alternativas
                     else
@@ -134,12 +136,12 @@ namespace Runtime_Compiladores_Proyecto
                 }
                 else if (expresionRegular[posicion] == '(') // Si encuentra un corchete inicial
                 {
-                    // Subcadena que toma lo que hay dentro de los paréntesis
+                    // Subcadena que toma lo que hay dentro de los parÃ©ntesis
                     string cadenaSeleccionAlt = expresionRegular.Substring(posicion + 1, expresionRegular.Substring(posicion).IndexOf(')') - 1);
 
-                    if (expresionExplicita != "" && expresionExplicita.Last() == ')') // Si la cadena no está vacía y hay un paréntesis al final
+                    if (expresionExplicita != "" && expresionExplicita.Last() == ')') // Si la cadena no estÃ¡ vacÃ­a y hay un parÃ©ntesis al final
                         expresionExplicita += '&';
-                    // En caso de contener operandos, corchete o paréntesis
+                    // En caso de contener operandos, corchete o parÃ©ntesis
                     if (cadenaSeleccionAlt.Contains('|') ||
                        cadenaSeleccionAlt.Contains('[') ||
                        cadenaSeleccionAlt.Contains('*') ||
@@ -147,17 +149,17 @@ namespace Runtime_Compiladores_Proyecto
                        cadenaSeleccionAlt.Contains('?') ||
                        cadenaSeleccionAlt.Contains('('))
                     {
-                        // Se toma la subcadena para convertirla en explícita mediante una llamada recursiva
+                        // Se toma la subcadena para convertirla en explÃ­cita mediante una llamada recursiva
                         expresionExplicita += '(' + convierteExplicita(cadenaSeleccionAlt) + ')';
                     }
                     else
                     {
                         expresionExplicita += SeleccionAlternativas('(' + cadenaSeleccionAlt + ')'); // Solo se agregan las concatenaciones
                     }
-                    posicion += cadenaSeleccionAlt.Length + 1; // Le suma el 1 al iterador que es después del final del paréntesis
+                    posicion += cadenaSeleccionAlt.Length + 1; // Le suma el 1 al iterador que es despuÃ©s del final del parÃ©ntesis
                 }
-                // Condiciones para concatenación
-                else if (posicion != expresionRegular.Length - 1) // Sino ha llegado al final de la expresión
+                // Condiciones para concatenaciÃ³n
+                else if (posicion != expresionRegular.Length - 1) // Sino ha llegado al final de la expresiÃ³n
                 {
                     // Si hay un operador y el siguiente no es una alternativa
                     if ((expresionRegular[posicion] == '?' && expresionRegular[posicion + 1] != '|') ||
@@ -171,7 +173,7 @@ namespace Runtime_Compiladores_Proyecto
                         expresionExplicita += expresionRegular[posicion];
                         expresionExplicita += '&';
                     }
-                    // Sino solo agrega la concatenación
+                    // Sino solo agrega la concatenaciÃ³n
                     else
                         expresionExplicita += expresionRegular[posicion];
                 }
@@ -193,6 +195,81 @@ namespace Runtime_Compiladores_Proyecto
             else return 0;
         }
 
-        
+        private void afnButton_Click(object sender, EventArgs e)
+        {
+            nEstados.Text = "";
+            nEpsilon.Text = "";
+            tablaAFN.Columns.Clear();
+            tablaAFN.Rows.Clear();
+            tablaAFN.Refresh();
+            // Convierte la expresion posfija a un automata AFN
+            Automata resultado = ConvertidorAutomata.AlgoritmoEvaluacion(expresionPostfijaResponse.Text)!;//pasamos expresion posfija
+            // Genera lista de estados, transiciones, total de estados y total de transiciones epsilon
+            resultado.GeneraInfo();
+
+            // Muestra la informacion
+            nEstados.Text += resultado.TotalEstados.ToString();
+            nEpsilon.Text += resultado.TransicionesEpsilon.ToString();
+
+            // Agrega la columna de estados a la tabla
+            tablaAFN.Columns.Add("estado", "Estado");
+            // Recorre todas las transiciones para agregar las columnas de transiciones a la tabla
+            resultado.Transiciones.ForEach(t =>
+            {
+                // Si el id de la transicion es diferente de epsilon
+                if (t.ID != Operador.Epsilon)
+                    tablaAFN.Columns.Add(t.ID.ToString(), t.ID.ToString());
+            });
+            // Al final evaluar si hay al menos una transicion epsilon para agregar la columna epsilon
+            if (resultado.Transiciones.Any(t => t.ID == Operador.Epsilon))
+                tablaAFN.Columns.Add("Îµ", "Îµ");
+
+            // Variables auxiliares para recorrer los estados y transiciones para agregar filas a la tabla
+            List<String> fila = new List<String>();
+            List<Transicion> transiciones = new List<Transicion>();
+            String celda = "";
+            // Recorre todos los estados del automata
+            resultado.Estados.ForEach(e =>
+            {
+                // Agrega a la fila el id del estado
+                fila.Add(e.ID);
+                // Recorre las transiciones del automata
+                resultado.Transiciones.ForEach((transicion) =>
+                {
+                    // Mientras no sea una transicion epsilon
+                    if (!transicion.ID.Equals(Operador.Epsilon))
+                    {
+                        // Busca las transiciones del estado que tengan el id de la transicion actual
+                        transiciones = e.Transiciones.FindAll(t => t.ID.Equals(transicion.ID)).ToList();
+                        // Si encontro transiciones
+                        if (transiciones.Count > 0)
+                        {
+                            // Agrega cada estado siguiente
+                            celda = "{ ";
+                            transiciones.ForEach(t => celda += (t.Siguiente.ID.ToString() + " "));
+                            celda += "}";
+                        }
+                        else celda = "Î¦";
+                        fila.Add(celda);
+                    }
+                });
+                // Realiza el mismo procedimiento para las transiciones epsilon del estado actual
+                transiciones = e.Transiciones.FindAll(t => t.ID.Equals(Operador.Epsilon)).ToList();
+                if (transiciones.Count > 0)
+                {
+                    celda = "{ ";
+                    transiciones.ForEach(t => celda += (t.Siguiente.ID.ToString() + " "));
+                    celda += "}";
+                }
+                else celda = "Î¦";
+                fila.Add(celda);
+
+                // Agrega la nueva fila a la tabla
+                tablaAFN.Rows.Add(fila.ToArray());
+                // Reinicia las variables auxiliares
+                fila.Clear();
+                celda = "";
+            });
+        }
     }
 }
