@@ -14,7 +14,7 @@ namespace Runtime_Compiladores_Proyecto
         //nombre del estado, sirve para enumerar despues
         public string ID { get; set; }
         //trancisiones que tiene el estado
-        public List<Transicion> Transiciones { get; }
+        internal List<Transicion> Transiciones { get; }
 
         /**
          * Constructor Estado sin transiciones
@@ -41,7 +41,7 @@ namespace Runtime_Compiladores_Proyecto
             Transiciones.Add(new Transicion(transicionId, this, siguienteEstado));
         }
 
-        public void AgregaTransiciones(List<Transicion> transiciones)
+        internal void AgregaTransiciones(List<Transicion> transiciones)
         {
             Transiciones.AddRange(transiciones);
         }

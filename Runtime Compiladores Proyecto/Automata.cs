@@ -11,7 +11,7 @@ namespace Runtime_Compiladores_Proyecto
         public string Etiqueta { get; set; }
         public Estado EstadoInicial { get; set; }
         public Estado EstadoFinal { get; set; }
-        public List<Transicion> Transiciones { get; set; }
+        internal List<Transicion> Transiciones { get; set; }
         public List<Estado> Estados { get; set; }
         public int TotalEstados { get; set; }
         public int TransicionesEpsilon { get; set; }
@@ -30,7 +30,7 @@ namespace Runtime_Compiladores_Proyecto
         //constructor vacio para poder crear automatas vacios
         public Automata() { }
         //regresa la transicion final
-        public Transicion? ObtenTransicionFinal(Estado estado)
+        internal Transicion? ObtenTransicionFinal(Estado estado)
         {
             Transicion? busqueda = estado.Transiciones.Find(t => t.Siguiente.Tipo == TipoEstado.Fin);
             if (busqueda != null)

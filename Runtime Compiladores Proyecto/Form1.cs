@@ -1,7 +1,11 @@
-﻿namespace Runtime_Compiladores_Proyecto
+﻿using System.Windows.Forms;
+
+namespace Runtime_Compiladores_Proyecto
 {
     public partial class Form1 : Form
     {
+        AFN afn = new AFN();
+        AFD afd = new AFD();
         public Form1()
         {
             InitializeComponent();
@@ -197,79 +201,130 @@
 
         private void afnButton_Click(object sender, EventArgs e)
         {
-            nEstados.Text = "";
-            nEpsilon.Text = "";
+            // LIMPIA LAS COLUMNAS Y FILAS DE LA TABLA
             tablaAFN.Columns.Clear();
             tablaAFN.Rows.Clear();
-            tablaAFN.Refresh();
-            // Convierte la expresion posfija a un automata AFN
-            Automata resultado = ConvertidorAutomata.AlgoritmoEvaluacion(expresionPostfijaResponse.Text)!;//pasamos expresion posfija
-            // Genera lista de estados, transiciones, total de estados y total de transiciones epsilon
-            resultado.GeneraInfo();
 
-            // Muestra la informacion
-            nEstados.Text += resultado.TotalEstados.ToString();
-            nEpsilon.Text += resultado.TransicionesEpsilon.ToString();
+            int contadorE = 0;
+            int contadorEstados = 0;
 
-            // Agrega la columna de estados a la tabla
-            tablaAFN.Columns.Add("estado", "Estado");
-            // Recorre todas las transiciones para agregar las columnas de transiciones a la tabla
-            resultado.Transiciones.ForEach(t =>
+            // INVOCA EL METODO PRINCIPAL PARA CONVERTIR DE POSFIJA EN AFN
+            afn.conviertePosfijaEnAFN(expresionPostfijaResponse.Text);
+            tablaAFN.Columns.Clear();
+
+            // CREA LA COLUMNA DE ESTADOS
+            DataGridViewColumn estados = new DataGridViewColumn();
+            estados.Name = "Estado";
+            estados.HeaderText = "Estado";
+            DataGridViewCell dgvcell1 = new DataGridViewTextBoxCell();
+            estados.CellTemplate = dgvcell1;
+            tablaAFN.Columns.Add(estados);
+
+            // RECORRE EL ALFABETO Y CREA LAS COLUMNAS 
+            afn.alfabeto.ForEach(token =>
             {
-                // Si el id de la transicion es diferente de epsilon
-                if (t.ID != Operador.Epsilon)
-                    tablaAFN.Columns.Add(t.ID.ToString(), t.ID.ToString());
+                DataGridViewColumn column = new DataGridViewColumn();
+                column.Name = token;
+                column.HeaderText = token;
+                DataGridViewCell dgvcell = new DataGridViewTextBoxCell();
+                column.CellTemplate = dgvcell;
+                tablaAFN.Columns.Add(column);
             });
-            // Al final evaluar si hay al menos una transicion epsilon para agregar la columna epsilon
-            if (resultado.Transiciones.Any(t => t.ID == Operador.Epsilon))
-                tablaAFN.Columns.Add("ε", "ε");
 
-            // Variables auxiliares para recorrer los estados y transiciones para agregar filas a la tabla
-            List<String> fila = new List<String>();
-            List<Transicion> transiciones = new List<Transicion>();
-            String celda = "";
-            // Recorre todos los estados del automata
-            resultado.Estados.ForEach(e =>
+            // CREA LA COLUMNA DE EPSILON
+            DataGridViewColumn columnaEpsilon = new DataGridViewColumn();
+            columnaEpsilon.Name = "e";
+            columnaEpsilon.HeaderText = "e";
+            DataGridViewCell dgvcellEpsilon = new DataGridViewTextBoxCell();
+            columnaEpsilon.CellTemplate = dgvcellEpsilon;
+            tablaAFN.Columns.Add(columnaEpsilon);
+
+            // RECORRE LOS ESTADOS Y LLENA LA TABLA
+            for (int i = 0; i < afn.estados.Count; i++)
             {
-                // Agrega a la fila el id del estado
-                fila.Add(e.ID);
-                // Recorre las transiciones del automata
-                resultado.Transiciones.ForEach((transicion) =>
+                contadorEstados++;
+                DataGridViewRow r = new DataGridViewRow();
+                r.CreateCells(tablaAFN);
+                r.Cells[0].Value = afn.estados[i].nombre;
+                for (int j = 0; j <= afn.alfabeto.Count; j++)
                 {
-                    // Mientras no sea una transicion epsilon
-                    if (!transicion.ID.Equals(Operador.Epsilon))
+                    if (j == afn.alfabeto.Count)
                     {
-                        // Busca las transiciones del estado que tengan el id de la transicion actual
-                        transiciones = e.Transiciones.FindAll(t => t.ID.Equals(transicion.ID)).ToList();
-                        // Si encontro transiciones
-                        if (transiciones.Count > 0)
+                        foreach (Transicion t in afn.estados[i].transiciones)
                         {
-                            // Agrega cada estado siguiente
-                            celda = "{ ";
-                            transiciones.ForEach(t => celda += (t.Siguiente.ID.ToString() + " "));
-                            celda += "}";
+                            if (t.valor == "")
+                            {
+                                contadorE++;
+                                r.Cells[j + 1].Value = r.Cells[j + 1].Value + " " + t.destino.nombre.ToString();
+                            }
                         }
-                        else celda = "Φ";
-                        fila.Add(celda);
                     }
-                });
-                // Realiza el mismo procedimiento para las transiciones epsilon del estado actual
-                transiciones = e.Transiciones.FindAll(t => t.ID.Equals(Operador.Epsilon)).ToList();
-                if (transiciones.Count > 0)
-                {
-                    celda = "{ ";
-                    transiciones.ForEach(t => celda += (t.Siguiente.ID.ToString() + " "));
-                    celda += "}";
+                    else
+                    {
+                        foreach (Transicion t in afn.estados[i].transiciones)
+                        {
+                            if (t.valor == afn.alfabeto[j])
+                            {
+                                r.Cells[j + 1].Value = r.Cells[j + 1].Value + " " + t.destino.nombre.ToString();
+                            }
+                        }
+                    }
                 }
-                else celda = "Φ";
-                fila.Add(celda);
+                tablaAFN.Rows.Add(r);
+            }
+            nEstados.Text = contadorEstados.ToString();
+            nEpsilon.Text = contadorE.ToString();
+        }
 
-                // Agrega la nueva fila a la tabla
-                tablaAFN.Rows.Add(fila.ToArray());
-                // Reinicia las variables auxiliares
-                fila.Clear();
-                celda = "";
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // REVISIÓN: AFD
+
+        private void afdButton_Click(object sender, EventArgs e)
+        {
+            // CREA EL AFD
+            afd.construyeAFD(afn);
+            tablaAFD.Columns.Clear();
+
+            // CREA LA COLUMNA DE ESTADOS
+            DataGridViewColumn columnEDO = new DataGridViewColumn();
+            columnEDO.Name = "Estado";
+            columnEDO.HeaderText = "Estado";
+            DataGridViewCell dgvcell1 = new DataGridViewTextBoxCell();
+            columnEDO.CellTemplate = dgvcell1;
+            tablaAFD.Columns.Add(columnEDO);
+
+            // RECORRE EL ALFABETO Y AGREGA LAS COLUMNAS DE TRANSICIONES
+            afn.alfabeto.ForEach(token =>
+            {
+                DataGridViewColumn column = new DataGridViewColumn();
+                column.Name = token;
+                column.HeaderText = token;
+                DataGridViewCell dgvcell = new DataGridViewTextBoxCell();
+                column.CellTemplate = dgvcell;
+                tablaAFD.Columns.Add(column);
             });
+
+
+            // RECORRE LOS ESTADOS Y LLENA LA TABLA
+            int contadorDestados = 0;
+            for (int i = 0; i < afd.DESTADOS.Count; i++)
+            {
+
+                contadorDestados++;
+                DataGridViewRow r = new DataGridViewRow();
+                r.CreateCells(tablaAFD);
+                r.Cells[0].Value = afd.DESTADOS[i].name;
+                for (int j = 0; j < afd.alfabeto.Count; j++)
+                    foreach (TransicionDestado t in afd.DESTADOS[i].transiciones)
+                        if (t.valor == afn.alfabeto[j])
+                            r.Cells[j + 1].Value = r.Cells[j + 1].Value + " " + t.destino.name.ToString();
+                tablaAFD.Rows.Add(r);
+            }
+            nEstadosAFD.Text = contadorDestados.ToString();
         }
     }
 }

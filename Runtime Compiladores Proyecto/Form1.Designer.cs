@@ -43,7 +43,12 @@
             this.numeroEstados = new System.Windows.Forms.Label();
             this.nEpsilon = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.numeroEstadosAFD = new System.Windows.Forms.Label();
+            this.nEstadosAFD = new System.Windows.Forms.Label();
+            this.tablaAFD = new System.Windows.Forms.DataGridView();
+            this.afdButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tablaAFN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaAFD)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -110,7 +115,7 @@
             // 
             // conversionButton
             // 
-            this.conversionButton.Location = new System.Drawing.Point(60, 111);
+            this.conversionButton.Location = new System.Drawing.Point(60, 109);
             this.conversionButton.Name = "conversionButton";
             this.conversionButton.Size = new System.Drawing.Size(217, 29);
             this.conversionButton.TabIndex = 5;
@@ -120,7 +125,7 @@
             // 
             // afnButton
             // 
-            this.afnButton.Location = new System.Drawing.Point(60, 231);
+            this.afnButton.Location = new System.Drawing.Point(60, 230);
             this.afnButton.Name = "afnButton";
             this.afnButton.Size = new System.Drawing.Size(217, 29);
             this.afnButton.TabIndex = 6;
@@ -132,7 +137,7 @@
             // 
             this.tablaAFN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaAFN.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.tablaAFN.Location = new System.Drawing.Point(386, 12);
+            this.tablaAFN.Location = new System.Drawing.Point(14, 381);
             this.tablaAFN.Name = "tablaAFN";
             this.tablaAFN.RowHeadersWidth = 51;
             this.tablaAFN.Size = new System.Drawing.Size(561, 388);
@@ -141,7 +146,7 @@
             // nEstados
             // 
             this.nEstados.AutoSize = true;
-            this.nEstados.Location = new System.Drawing.Point(178, 284);
+            this.nEstados.Location = new System.Drawing.Point(166, 284);
             this.nEstados.Name = "nEstados";
             this.nEstados.Size = new System.Drawing.Size(44, 20);
             this.nEstados.TabIndex = 9;
@@ -159,7 +164,7 @@
             // nEpsilon
             // 
             this.nEpsilon.AutoSize = true;
-            this.nEpsilon.Location = new System.Drawing.Point(213, 341);
+            this.nEpsilon.Location = new System.Drawing.Point(204, 341);
             this.nEpsilon.Name = "nEpsilon";
             this.nEpsilon.Size = new System.Drawing.Size(44, 20);
             this.nEpsilon.TabIndex = 11;
@@ -174,9 +179,52 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "Número de transiciones ε: ";
             // 
+            // numeroEstadosAFD
+            // 
+            this.numeroEstadosAFD.AutoSize = true;
+            this.numeroEstadosAFD.Location = new System.Drawing.Point(610, 341);
+            this.numeroEstadosAFD.Name = "numeroEstadosAFD";
+            this.numeroEstadosAFD.Size = new System.Drawing.Size(146, 20);
+            this.numeroEstadosAFD.TabIndex = 13;
+            this.numeroEstadosAFD.Text = "Número de estados: ";
+            this.numeroEstadosAFD.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // nEstadosAFD
+            // 
+            this.nEstadosAFD.AutoSize = true;
+            this.nEstadosAFD.Location = new System.Drawing.Point(762, 341);
+            this.nEstadosAFD.Name = "nEstadosAFD";
+            this.nEstadosAFD.Size = new System.Drawing.Size(44, 20);
+            this.nEstadosAFD.TabIndex = 14;
+            this.nEstadosAFD.Text = "NULL";
+            // 
+            // tablaAFD
+            // 
+            this.tablaAFD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaAFD.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.tablaAFD.Location = new System.Drawing.Point(610, 381);
+            this.tablaAFD.Name = "tablaAFD";
+            this.tablaAFD.RowHeadersWidth = 51;
+            this.tablaAFD.Size = new System.Drawing.Size(561, 388);
+            this.tablaAFD.TabIndex = 15;
+            // 
+            // afdButton
+            // 
+            this.afdButton.Location = new System.Drawing.Point(610, 284);
+            this.afdButton.Name = "afdButton";
+            this.afdButton.Size = new System.Drawing.Size(217, 29);
+            this.afdButton.TabIndex = 16;
+            this.afdButton.Text = "AFN a AFD";
+            this.afdButton.UseVisualStyleBackColor = true;
+            this.afdButton.Click += new System.EventHandler(this.afdButton_Click);
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(987, 525);
+            this.ClientSize = new System.Drawing.Size(1189, 814);
+            this.Controls.Add(this.afdButton);
+            this.Controls.Add(this.tablaAFD);
+            this.Controls.Add(this.nEstadosAFD);
+            this.Controls.Add(this.numeroEstadosAFD);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.nEpsilon);
             this.Controls.Add(this.numeroEstados);
@@ -193,6 +241,7 @@
             this.Text = "Compilador";
             this.Load += new System.EventHandler(this.Compilador_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaAFN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaAFD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,5 +267,9 @@
         private Label numeroEstados;
         private Label nEpsilon;
         private Label label2;
+        private Label numeroEstadosAFD;
+        private Label nEstadosAFD;
+        private DataGridView tablaAFD;
+        private Button afdButton;
     }
 }
