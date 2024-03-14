@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\leopu\\source\\repos\\AlexEscamillaA\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj": {}
+    "C:\\Users\\alexe\\OneDrive\\Documentos\\GitHub\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj": {}
   },
   "projects": {
-    "C:\\Users\\leopu\\source\\repos\\AlexEscamillaA\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj": {
+    "C:\\Users\\alexe\\OneDrive\\Documentos\\GitHub\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leopu\\source\\repos\\AlexEscamillaA\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj",
+        "projectUniqueName": "C:\\Users\\alexe\\OneDrive\\Documentos\\GitHub\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj",
         "projectName": "Runtime Compiladores Proyecto",
-        "projectPath": "C:\\Users\\leopu\\source\\repos\\AlexEscamillaA\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj",
-        "packagesPath": "C:\\Users\\leopu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leopu\\source\\repos\\AlexEscamillaA\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\obj\\",
+        "projectPath": "C:\\Users\\alexe\\OneDrive\\Documentos\\GitHub\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj",
+        "packagesPath": "C:\\Users\\alexe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexe\\OneDrive\\Documentos\\GitHub\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\leopu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alexe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

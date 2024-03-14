@@ -12,6 +12,12 @@ namespace Runtime_Compiladores_Proyecto
         public List<string> alfabeto = new List<string>();
         public int contador = 0;
 
+        // Función para convertir el índice en una letra en mayúsculas
+        public string ConvertirIndiceALetra(int indice)
+        {
+            return ((char)('A' + indice)).ToString();
+        }
+
         // FUNCION PARA CREAR EL AFD
         public void construyeAFD(AFN afn)
         {
@@ -105,11 +111,11 @@ namespace Runtime_Compiladores_Proyecto
                     }
                 }
             }
-            DEstado d = new DEstado(resultado, contador.ToString());
+            DEstado d = new DEstado(resultado, ConvertirIndiceALetra(contador));
             return d;
         }
 
-        // BUSCA ESTADOS EPSILON CON ALGORUTMO EN PROFUNDIDAD
+        // BUSCA ESTADOS EPSILON CON ALGORITMO EN PROFUNDIDAD
         public List<EDO> dfsEpsilon(EDO e)
         {
             List<EDO> res = new List<EDO>();
@@ -167,7 +173,6 @@ namespace Runtime_Compiladores_Proyecto
             foreach (DEstado des in DESTADOS)
                 if (des.visited == false)
                     res = true;
-            return res;
             return res;
         }
         //RECIBE LA CADENA LEXEMA Y EL ESTADO INICIAL

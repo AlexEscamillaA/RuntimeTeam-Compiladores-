@@ -1,4 +1,9 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Runtime_Compiladores_Proyecto
 {
@@ -13,7 +18,7 @@ namespace Runtime_Compiladores_Proyecto
 
         private void expresionRegular_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void boton_calcular_posfija_Click(object sender, EventArgs e)
@@ -248,6 +253,7 @@ namespace Runtime_Compiladores_Proyecto
                 r.Cells[0].Value = afn.estados[i].nombre;
                 for (int j = 0; j <= afn.alfabeto.Count; j++)
                 {
+                    List<string> destinos = new List<string>();
                     if (j == afn.alfabeto.Count)
                     {
                         foreach (Transicion t in afn.estados[i].transiciones)
@@ -255,7 +261,7 @@ namespace Runtime_Compiladores_Proyecto
                             if (t.valor == "")
                             {
                                 contadorE++;
-                                r.Cells[j + 1].Value = r.Cells[j + 1].Value + " " + t.destino.nombre.ToString();
+                                destinos.Add($"{{{t.destino.nombre}}}");
                             }
                         }
                     }
@@ -265,10 +271,11 @@ namespace Runtime_Compiladores_Proyecto
                         {
                             if (t.valor == afn.alfabeto[j])
                             {
-                                r.Cells[j + 1].Value = r.Cells[j + 1].Value + " " + t.destino.nombre.ToString();
+                                destinos.Add($"{{{t.destino.nombre}}}");
                             }
                         }
                     }
+                    r.Cells[j + 1].Value = string.Join(", ", destinos);
                 }
                 tablaAFN.Rows.Add(r);
             }
