@@ -333,5 +333,23 @@ namespace Runtime_Compiladores_Proyecto
             }
             nEstadosAFD.Text = contadorDestados.ToString();
         }
+
+        //Boton para validar que el lexema compla o no con el lenguaje de la expresion regular
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //INTENTA VALIDAR EL LEXEMA CON ValidaLema CON EL AFD YA CONSTRUIDO
+            try
+            {
+                if (afd.lexemaValido(tbLexema.Text, afd.DESTADOS[0]))
+                    lexemares.Text = "Si pertenece";
+                else
+                    lexemares.Text = "No pertenece";
+            }
+            //CUANDO SE SALE DEL AUTOMATA ARROJA UNA EXCEPCION
+            catch
+            {
+                lexemares.Text = "No Pertenece";
+            }
+        }
     }
 }

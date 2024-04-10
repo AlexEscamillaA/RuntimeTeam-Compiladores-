@@ -175,31 +175,34 @@ namespace Runtime_Compiladores_Proyecto
                     res = true;
             return res;
         }
-        //RECIBE LA CADENA LEXEMA Y EL ESTADO INICIAL
+        //RECIBE LA CADENA LEXEMA DEL TEXTBOX QUE SE AGREGO, Y EL ESTADO INICIAL
         public bool lexemaValido(string lexema, DEstado destado)
         {
-            bool resultado = false;
-            //CASO BASE DE LA FUNCION RECURSIVA, SI LLEGA AL ESTADO DE ACEPTACION Y EL LEXEMA ESTA VACIO, REGRESA VERDADERO
+            bool resultado = false; //COMIENZA COMO FALSE A MENOS QUE SE CUMPLA
+            //ESTE ES EL CASO BASE DE LA FUNCION RECURSIVA, SI LLEGA AL ESTADO DE ACEPTACION Y EL LEXEMA ESTA VACIO,
+            //REGRESA VERDADERO, ENVIA UN TRUE A FORM1.CS PARA QUE MUESTRE
+            //SI PERTENECE O NO PERTENECE
             if (destado.estadoAceptacion && lexema == "")
+            {
+
                 return true;
+            }
+            //Si el estado actual no es de aceptación o el lexema no está vacío, se procede a realizar el análisis recursivo.
             else
             {
-                //DE LO CONTRARIO SE ELIMINA EL 1ER CARACTER DEL LEXEMA Y LO GUARDA EN lexemaSubstr
+                //SE ELIMINA EL 1ER CARACTER DEL LEXEMA Y LO GUARDA EN lexemaSubstr
                 string lexemaSubstr = "";
                 //SE VALIDA QUE EL LEXEMA NO ESTE VACIO
                 if (lexema.Count() > 1)
                     lexemaSubstr = lexema.Substring(1);
-                //RECORRE TODAS LAS TRANSICIONES QUE TENGA EL ESTADO ACTUAL
-                foreach (TransicionDestado t in destado.transiciones)
+                foreach (TransicionDestado t in destado.transiciones) //RECORRE TODAS LAS TRANSICIONES DEL AFD SEGUN LOS SIMBOLOS DEL LEXEMA
                 {
-                    //INTENTA COMPARAR EL 1ER CARACTER DEL LEXEMA CON LA TRANSICION DEL ESTADO
-                    try
+                    try //INTENTA COMPARAR EL PRIMER CARACTER DEL LEXEMA CON LA TRANSICION DEL ESTADO
                     {
-                        //SI EL 1ER CARACTER DEL LEXEMA ES = A LA TRANSICION ENTONCES LLAMA A ValidaLexema (LLAMADA RECURSIVA) SIN EL 1ER CARACTER DEL LEXEMA
-                        //Y EL EDO DESTINO DE LA TRANSICION ACTUAL
-                        if (lexema[0].ToString() == t.valor)
-                            if (lexemaValido(lexemaSubstr, t.destino))
-                                return true;
+                        if (lexema[0].ToString() == t.valor) //COMPARA EL PRIMER CARACTER DEL LEXEMA CON EL VALOR DE LA TRANSICION T.VALOR
+                            if (lexemaValido(lexemaSubstr, t.destino)) //SE HACE UNA LLAMADA RECURSIVA A LA FUNCION LEXEMAVALIDO, 
+                                //CON EL PRIMER CARACTER ELIMINADO DEL LEXEMA Y EL ESTADO DESTINO DELA TRANSICION ACTUAL
+                                return true; //SI DEVUELVE TRUE SIGNIFICA QUE EL RESTO DEL LEXEMA ES VALIDO HASTA ESTE PUNTO
                     }
                     //EN CASO DE INTENTAR ACCEDER A UN ESPACIO SIN MEMORIA, ARROJA UN ERROR
                     catch (Exception e)
