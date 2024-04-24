@@ -31,3 +31,20 @@ C:\Users\alexe\OneDrive\Documentos\GitHub\RuntimeTeam-Compiladores-\Runtime Comp
 C:\Users\alexe\OneDrive\Documentos\GitHub\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime Compiladores Proyecto.pdb
 C:\Users\alexe\OneDrive\Documentos\GitHub\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime Compiladores Proyecto.genruntimeconfig.cache
 C:\Users\alexe\OneDrive\Documentos\GitHub\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\ref\Runtime Compiladores Proyecto.dll
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\bin\Debug\net6.0-windows\Runtime Compiladores Proyecto.exe
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\bin\Debug\net6.0-windows\Runtime Compiladores Proyecto.deps.json
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\bin\Debug\net6.0-windows\Runtime Compiladores Proyecto.runtimeconfig.json
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\bin\Debug\net6.0-windows\Runtime Compiladores Proyecto.dll
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\bin\Debug\net6.0-windows\Runtime Compiladores Proyecto.pdb
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime Compiladores Proyecto.csproj.AssemblyReference.cache
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime_Compiladores_Proyecto.Form1.resources
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime Compiladores Proyecto.csproj.GenerateResource.cache
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime Compiladores Proyecto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime Compiladores Proyecto.AssemblyInfoInputs.cache
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime Compiladores Proyecto.AssemblyInfo.cs
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime Compiladores Proyecto.csproj.CoreCompileInputs.cache
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime Compiladores Proyecto.dll
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\refint\Runtime Compiladores Proyecto.dll
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime Compiladores Proyecto.pdb
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\Runtime Compiladores Proyecto.genruntimeconfig.cache
+C:\Users\leopu\Source\Repos\RT\RuntimeTeam-Compiladores-\Runtime Compiladores Proyecto\obj\Debug\net6.0-windows\ref\Runtime Compiladores Proyecto.dll

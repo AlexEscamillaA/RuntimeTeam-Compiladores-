@@ -28,264 +28,368 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            expresionRegularLabel = new Label();
-            expresionPostfijaLabel = new Label();
-            analizadorLexicoLabel = new Label();
-            expRegularLabel = new Label();
-            expPostfijaLabel = new Label();
-            expresionRegularResponse = new TextBox();
-            expresionPostfijaResponse = new TextBox();
-            conversionButton = new Button();
-            afnButton = new Button();
-            tablaAFN = new DataGridView();
-            nEstados = new Label();
-            numeroEstados = new Label();
-            nEpsilon = new Label();
-            label2 = new Label();
-            numeroEstadosAFD = new Label();
-            nEstadosAFD = new Label();
-            tablaAFD = new DataGridView();
-            afdButton = new Button();
-            label3 = new Label();
-            button2 = new Button();
-            tbLexema = new TextBox();
-            lexemares = new Label();
-            ((System.ComponentModel.ISupportInitialize)tablaAFN).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)tablaAFD).BeginInit();
-            SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.expresionRegularLabel = new System.Windows.Forms.Label();
+            this.expresionPostfijaLabel = new System.Windows.Forms.Label();
+            this.analizadorLexicoLabel = new System.Windows.Forms.Label();
+            this.expRegularLabel = new System.Windows.Forms.Label();
+            this.expPostfijaLabel = new System.Windows.Forms.Label();
+            this.expresionRegularResponse = new System.Windows.Forms.TextBox();
+            this.expresionPostfijaResponse = new System.Windows.Forms.TextBox();
+            this.conversionButton = new System.Windows.Forms.Button();
+            this.afnButton = new System.Windows.Forms.Button();
+            this.tablaAFN = new System.Windows.Forms.DataGridView();
+            this.nEstados = new System.Windows.Forms.Label();
+            this.numeroEstados = new System.Windows.Forms.Label();
+            this.nEpsilon = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numeroEstadosAFD = new System.Windows.Forms.Label();
+            this.nEstadosAFD = new System.Windows.Forms.Label();
+            this.tablaAFD = new System.Windows.Forms.DataGridView();
+            this.afdButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tbLexema = new System.Windows.Forms.TextBox();
+            this.lexemares = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.identificadorBox = new System.Windows.Forms.TextBox();
+            this.numeroBox = new System.Windows.Forms.TextBox();
+            this.programaBox = new System.Windows.Forms.TextBox();
+            this.tablaTokens = new System.Windows.Forms.DataGridView();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clasificarBoton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaAFN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaAFD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTokens)).BeginInit();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.Location = new Point(0, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(100, 23);
-            label1.TabIndex = 0;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 0;
             // 
             // expresionRegularLabel
             // 
-            expresionRegularLabel.Location = new Point(0, 0);
-            expresionRegularLabel.Name = "expresionRegularLabel";
-            expresionRegularLabel.Size = new Size(100, 23);
-            expresionRegularLabel.TabIndex = 0;
+            this.expresionRegularLabel.Location = new System.Drawing.Point(0, 0);
+            this.expresionRegularLabel.Name = "expresionRegularLabel";
+            this.expresionRegularLabel.Size = new System.Drawing.Size(100, 23);
+            this.expresionRegularLabel.TabIndex = 0;
             // 
             // expresionPostfijaLabel
             // 
-            expresionPostfijaLabel.Location = new Point(0, 0);
-            expresionPostfijaLabel.Name = "expresionPostfijaLabel";
-            expresionPostfijaLabel.Size = new Size(100, 23);
-            expresionPostfijaLabel.TabIndex = 0;
+            this.expresionPostfijaLabel.Location = new System.Drawing.Point(0, 0);
+            this.expresionPostfijaLabel.Name = "expresionPostfijaLabel";
+            this.expresionPostfijaLabel.Size = new System.Drawing.Size(100, 23);
+            this.expresionPostfijaLabel.TabIndex = 0;
             // 
             // analizadorLexicoLabel
             // 
-            analizadorLexicoLabel.AutoSize = true;
-            analizadorLexicoLabel.Location = new Point(60, 9);
-            analizadorLexicoLabel.Name = "analizadorLexicoLabel";
-            analizadorLexicoLabel.Size = new Size(100, 15);
-            analizadorLexicoLabel.TabIndex = 0;
-            analizadorLexicoLabel.Text = "Analizador Léxico";
+            this.analizadorLexicoLabel.AutoSize = true;
+            this.analizadorLexicoLabel.Location = new System.Drawing.Point(60, 9);
+            this.analizadorLexicoLabel.Name = "analizadorLexicoLabel";
+            this.analizadorLexicoLabel.Size = new System.Drawing.Size(127, 20);
+            this.analizadorLexicoLabel.TabIndex = 0;
+            this.analizadorLexicoLabel.Text = "Analizador Léxico";
             // 
             // expRegularLabel
             // 
-            expRegularLabel.AutoSize = true;
-            expRegularLabel.Location = new Point(11, 44);
-            expRegularLabel.Name = "expRegularLabel";
-            expRegularLabel.Size = new Size(101, 15);
-            expRegularLabel.TabIndex = 1;
-            expRegularLabel.Text = "Expresión Regular";
+            this.expRegularLabel.AutoSize = true;
+            this.expRegularLabel.Location = new System.Drawing.Point(11, 44);
+            this.expRegularLabel.Name = "expRegularLabel";
+            this.expRegularLabel.Size = new System.Drawing.Size(128, 20);
+            this.expRegularLabel.TabIndex = 1;
+            this.expRegularLabel.Text = "Expresión Regular";
             // 
             // expPostfijaLabel
             // 
-            expPostfijaLabel.AutoSize = true;
-            expPostfijaLabel.Location = new Point(11, 160);
-            expPostfijaLabel.Name = "expPostfijaLabel";
-            expPostfijaLabel.Size = new Size(100, 15);
-            expPostfijaLabel.TabIndex = 2;
-            expPostfijaLabel.Text = "Expresión Postfija";
+            this.expPostfijaLabel.AutoSize = true;
+            this.expPostfijaLabel.Location = new System.Drawing.Point(11, 160);
+            this.expPostfijaLabel.Name = "expPostfijaLabel";
+            this.expPostfijaLabel.Size = new System.Drawing.Size(125, 20);
+            this.expPostfijaLabel.TabIndex = 2;
+            this.expPostfijaLabel.Text = "Expresión Postfija";
             // 
             // expresionRegularResponse
             // 
-            expresionRegularResponse.Location = new Point(14, 67);
-            expresionRegularResponse.Name = "expresionRegularResponse";
-            expresionRegularResponse.Size = new Size(329, 23);
-            expresionRegularResponse.TabIndex = 3;
+            this.expresionRegularResponse.Location = new System.Drawing.Point(14, 67);
+            this.expresionRegularResponse.Name = "expresionRegularResponse";
+            this.expresionRegularResponse.Size = new System.Drawing.Size(329, 27);
+            this.expresionRegularResponse.TabIndex = 3;
             // 
             // expresionPostfijaResponse
             // 
-            expresionPostfijaResponse.Location = new Point(11, 183);
-            expresionPostfijaResponse.Name = "expresionPostfijaResponse";
-            expresionPostfijaResponse.Size = new Size(332, 23);
-            expresionPostfijaResponse.TabIndex = 4;
+            this.expresionPostfijaResponse.Location = new System.Drawing.Point(11, 183);
+            this.expresionPostfijaResponse.Name = "expresionPostfijaResponse";
+            this.expresionPostfijaResponse.Size = new System.Drawing.Size(332, 27);
+            this.expresionPostfijaResponse.TabIndex = 4;
             // 
             // conversionButton
             // 
-            conversionButton.Location = new Point(60, 109);
-            conversionButton.Name = "conversionButton";
-            conversionButton.Size = new Size(217, 29);
-            conversionButton.TabIndex = 5;
-            conversionButton.Text = "Expresión Regular a Postfija";
-            conversionButton.UseVisualStyleBackColor = true;
-            conversionButton.Click += conversionButton_Click;
+            this.conversionButton.Location = new System.Drawing.Point(60, 109);
+            this.conversionButton.Name = "conversionButton";
+            this.conversionButton.Size = new System.Drawing.Size(217, 29);
+            this.conversionButton.TabIndex = 5;
+            this.conversionButton.Text = "Expresión Regular a Postfija";
+            this.conversionButton.UseVisualStyleBackColor = true;
+            this.conversionButton.Click += new System.EventHandler(this.conversionButton_Click_1);
             // 
             // afnButton
             // 
-            afnButton.Location = new Point(60, 230);
-            afnButton.Name = "afnButton";
-            afnButton.Size = new Size(217, 29);
-            afnButton.TabIndex = 6;
-            afnButton.Text = "Expresión Postfija a AFN";
-            afnButton.UseVisualStyleBackColor = true;
-            afnButton.Click += afnButton_Click;
+            this.afnButton.Location = new System.Drawing.Point(60, 230);
+            this.afnButton.Name = "afnButton";
+            this.afnButton.Size = new System.Drawing.Size(217, 29);
+            this.afnButton.TabIndex = 6;
+            this.afnButton.Text = "Expresión Postfija a AFN";
+            this.afnButton.UseVisualStyleBackColor = true;
+            this.afnButton.Click += new System.EventHandler(this.afnButton_Click_1);
             // 
             // tablaAFN
             // 
-            tablaAFN.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tablaAFN.EditMode = DataGridViewEditMode.EditProgrammatically;
-            tablaAFN.Location = new Point(14, 381);
-            tablaAFN.Name = "tablaAFN";
-            tablaAFN.RowHeadersWidth = 51;
-            tablaAFN.Size = new Size(561, 388);
-            tablaAFN.TabIndex = 7;
+            this.tablaAFN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaAFN.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.tablaAFN.Location = new System.Drawing.Point(14, 381);
+            this.tablaAFN.Name = "tablaAFN";
+            this.tablaAFN.RowHeadersWidth = 51;
+            this.tablaAFN.Size = new System.Drawing.Size(561, 388);
+            this.tablaAFN.TabIndex = 7;
             // 
             // nEstados
             // 
-            nEstados.AutoSize = true;
-            nEstados.Location = new Point(166, 284);
-            nEstados.Name = "nEstados";
-            nEstados.Size = new Size(36, 15);
-            nEstados.TabIndex = 9;
-            nEstados.Text = "NULL";
+            this.nEstados.AutoSize = true;
+            this.nEstados.Location = new System.Drawing.Point(166, 284);
+            this.nEstados.Name = "nEstados";
+            this.nEstados.Size = new System.Drawing.Size(44, 20);
+            this.nEstados.TabIndex = 9;
+            this.nEstados.Text = "NULL";
             // 
             // numeroEstados
             // 
-            numeroEstados.AutoSize = true;
-            numeroEstados.Location = new Point(14, 284);
-            numeroEstados.Name = "numeroEstados";
-            numeroEstados.Size = new Size(116, 15);
-            numeroEstados.TabIndex = 10;
-            numeroEstados.Text = "Número de estados: ";
+            this.numeroEstados.AutoSize = true;
+            this.numeroEstados.Location = new System.Drawing.Point(14, 284);
+            this.numeroEstados.Name = "numeroEstados";
+            this.numeroEstados.Size = new System.Drawing.Size(146, 20);
+            this.numeroEstados.TabIndex = 10;
+            this.numeroEstados.Text = "Número de estados: ";
             // 
             // nEpsilon
             // 
-            nEpsilon.AutoSize = true;
-            nEpsilon.Location = new Point(204, 341);
-            nEpsilon.Name = "nEpsilon";
-            nEpsilon.Size = new Size(36, 15);
-            nEpsilon.TabIndex = 11;
-            nEpsilon.Text = "NULL";
+            this.nEpsilon.AutoSize = true;
+            this.nEpsilon.Location = new System.Drawing.Point(204, 341);
+            this.nEpsilon.Name = "nEpsilon";
+            this.nEpsilon.Size = new System.Drawing.Size(44, 20);
+            this.nEpsilon.TabIndex = 11;
+            this.nEpsilon.Text = "NULL";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(14, 341);
-            label2.Name = "label2";
-            label2.Size = new Size(147, 15);
-            label2.TabIndex = 12;
-            label2.Text = "Número de transiciones ε: ";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 341);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(184, 20);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Número de transiciones ε: ";
             // 
             // numeroEstadosAFD
             // 
-            numeroEstadosAFD.AutoSize = true;
-            numeroEstadosAFD.Location = new Point(610, 341);
-            numeroEstadosAFD.Name = "numeroEstadosAFD";
-            numeroEstadosAFD.Size = new Size(116, 15);
-            numeroEstadosAFD.TabIndex = 13;
-            numeroEstadosAFD.Text = "Número de estados: ";
-            numeroEstadosAFD.Click += label3_Click;
+            this.numeroEstadosAFD.AutoSize = true;
+            this.numeroEstadosAFD.Location = new System.Drawing.Point(610, 341);
+            this.numeroEstadosAFD.Name = "numeroEstadosAFD";
+            this.numeroEstadosAFD.Size = new System.Drawing.Size(146, 20);
+            this.numeroEstadosAFD.TabIndex = 13;
+            this.numeroEstadosAFD.Text = "Número de estados: ";
             // 
             // nEstadosAFD
             // 
-            nEstadosAFD.AutoSize = true;
-            nEstadosAFD.Location = new Point(762, 341);
-            nEstadosAFD.Name = "nEstadosAFD";
-            nEstadosAFD.Size = new Size(36, 15);
-            nEstadosAFD.TabIndex = 14;
-            nEstadosAFD.Text = "NULL";
+            this.nEstadosAFD.AutoSize = true;
+            this.nEstadosAFD.Location = new System.Drawing.Point(762, 341);
+            this.nEstadosAFD.Name = "nEstadosAFD";
+            this.nEstadosAFD.Size = new System.Drawing.Size(44, 20);
+            this.nEstadosAFD.TabIndex = 14;
+            this.nEstadosAFD.Text = "NULL";
             // 
             // tablaAFD
             // 
-            tablaAFD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tablaAFD.EditMode = DataGridViewEditMode.EditProgrammatically;
-            tablaAFD.Location = new Point(610, 381);
-            tablaAFD.Name = "tablaAFD";
-            tablaAFD.RowHeadersWidth = 51;
-            tablaAFD.Size = new Size(561, 388);
-            tablaAFD.TabIndex = 15;
+            this.tablaAFD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaAFD.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.tablaAFD.Location = new System.Drawing.Point(610, 381);
+            this.tablaAFD.Name = "tablaAFD";
+            this.tablaAFD.RowHeadersWidth = 51;
+            this.tablaAFD.Size = new System.Drawing.Size(561, 388);
+            this.tablaAFD.TabIndex = 15;
             // 
             // afdButton
             // 
-            afdButton.Location = new Point(610, 284);
-            afdButton.Name = "afdButton";
-            afdButton.Size = new Size(217, 29);
-            afdButton.TabIndex = 16;
-            afdButton.Text = "AFN a AFD";
-            afdButton.UseVisualStyleBackColor = true;
-            afdButton.Click += afdButton_Click;
+            this.afdButton.Location = new System.Drawing.Point(610, 284);
+            this.afdButton.Name = "afdButton";
+            this.afdButton.Size = new System.Drawing.Size(217, 29);
+            this.afdButton.TabIndex = 16;
+            this.afdButton.Text = "AFN a AFD";
+            this.afdButton.UseVisualStyleBackColor = true;
+            this.afdButton.Click += new System.EventHandler(this.afdButton_Click_1);
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(610, 44);
-            label3.Name = "label3";
-            label3.Size = new Size(51, 15);
-            label3.TabIndex = 17;
-            label3.Text = "Lexema:";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(610, 44);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 20);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Lexema:";
             // 
             // button2
             // 
-            button2.Location = new Point(982, 67);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 18;
-            button2.Text = "Validar";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            this.button2.Location = new System.Drawing.Point(982, 67);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 27);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "Validar";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // tbLexema
             // 
-            tbLexema.Location = new Point(610, 67);
-            tbLexema.Name = "tbLexema";
-            tbLexema.Size = new Size(366, 23);
-            tbLexema.TabIndex = 19;
+            this.tbLexema.Location = new System.Drawing.Point(610, 67);
+            this.tbLexema.Name = "tbLexema";
+            this.tbLexema.Size = new System.Drawing.Size(366, 27);
+            this.tbLexema.TabIndex = 19;
             // 
             // lexemares
             // 
-            lexemares.AutoSize = true;
-            lexemares.Location = new Point(610, 109);
-            lexemares.Name = "lexemares";
-            lexemares.Size = new Size(0, 15);
-            lexemares.TabIndex = 20;
+            this.lexemares.AutoSize = true;
+            this.lexemares.Location = new System.Drawing.Point(610, 109);
+            this.lexemares.Name = "lexemares";
+            this.lexemares.Size = new System.Drawing.Size(0, 20);
+            this.lexemares.TabIndex = 20;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(1207, 44);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 20);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Identificador:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1207, 86);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 20);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Número:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1207, 128);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(132, 20);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Programa en TINY:";
+            // 
+            // identificadorBox
+            // 
+            this.identificadorBox.Location = new System.Drawing.Point(1310, 37);
+            this.identificadorBox.Name = "identificadorBox";
+            this.identificadorBox.Size = new System.Drawing.Size(325, 27);
+            this.identificadorBox.TabIndex = 24;
+            // 
+            // numeroBox
+            // 
+            this.numeroBox.Location = new System.Drawing.Point(1310, 83);
+            this.numeroBox.Name = "numeroBox";
+            this.numeroBox.Size = new System.Drawing.Size(325, 27);
+            this.numeroBox.TabIndex = 25;
+            // 
+            // programaBox
+            // 
+            this.programaBox.Location = new System.Drawing.Point(1207, 160);
+            this.programaBox.Multiline = true;
+            this.programaBox.Name = "programaBox";
+            this.programaBox.Size = new System.Drawing.Size(428, 201);
+            this.programaBox.TabIndex = 26;
+            // 
+            // tablaTokens
+            // 
+            this.tablaTokens.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaTokens.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column5,
+            this.Column6});
+            this.tablaTokens.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.tablaTokens.Location = new System.Drawing.Point(1207, 381);
+            this.tablaTokens.Name = "tablaTokens";
+            this.tablaTokens.RowHeadersWidth = 51;
+            this.tablaTokens.Size = new System.Drawing.Size(428, 388);
+            this.tablaTokens.TabIndex = 27;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Nombre";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 125;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Lexema";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 125;
+            // 
+            // clasificarBoton
+            // 
+            this.clasificarBoton.Location = new System.Drawing.Point(1418, 124);
+            this.clasificarBoton.Name = "clasificarBoton";
+            this.clasificarBoton.Size = new System.Drawing.Size(217, 29);
+            this.clasificarBoton.TabIndex = 28;
+            this.clasificarBoton.Text = "Clasificar tokens";
+            this.clasificarBoton.UseVisualStyleBackColor = true;
+            this.clasificarBoton.Click += new System.EventHandler(this.clasificarBoton_Click);
             // 
             // Form1
             // 
-            ClientSize = new Size(1189, 814);
-            Controls.Add(lexemares);
-            Controls.Add(tbLexema);
-            Controls.Add(button2);
-            Controls.Add(label3);
-            Controls.Add(afdButton);
-            Controls.Add(tablaAFD);
-            Controls.Add(nEstadosAFD);
-            Controls.Add(numeroEstadosAFD);
-            Controls.Add(label2);
-            Controls.Add(nEpsilon);
-            Controls.Add(numeroEstados);
-            Controls.Add(nEstados);
-            Controls.Add(tablaAFN);
-            Controls.Add(afnButton);
-            Controls.Add(conversionButton);
-            Controls.Add(expresionPostfijaResponse);
-            Controls.Add(expresionRegularResponse);
-            Controls.Add(expPostfijaLabel);
-            Controls.Add(expRegularLabel);
-            Controls.Add(analizadorLexicoLabel);
-            Name = "Form1";
-            Text = "Compilador";
-            Load += Compilador_Load;
-            ((System.ComponentModel.ISupportInitialize)tablaAFN).EndInit();
-            ((System.ComponentModel.ISupportInitialize)tablaAFD).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.ClientSize = new System.Drawing.Size(1735, 814);
+            this.Controls.Add(this.clasificarBoton);
+            this.Controls.Add(this.tablaTokens);
+            this.Controls.Add(this.programaBox);
+            this.Controls.Add(this.numeroBox);
+            this.Controls.Add(this.identificadorBox);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lexemares);
+            this.Controls.Add(this.tbLexema);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.afdButton);
+            this.Controls.Add(this.tablaAFD);
+            this.Controls.Add(this.nEstadosAFD);
+            this.Controls.Add(this.numeroEstadosAFD);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.nEpsilon);
+            this.Controls.Add(this.numeroEstados);
+            this.Controls.Add(this.nEstados);
+            this.Controls.Add(this.tablaAFN);
+            this.Controls.Add(this.afnButton);
+            this.Controls.Add(this.conversionButton);
+            this.Controls.Add(this.expresionPostfijaResponse);
+            this.Controls.Add(this.expresionRegularResponse);
+            this.Controls.Add(this.expPostfijaLabel);
+            this.Controls.Add(this.expRegularLabel);
+            this.Controls.Add(this.analizadorLexicoLabel);
+            this.Name = "Form1";
+            this.Text = "Compilador";
+            ((System.ComponentModel.ISupportInitialize)(this.tablaAFN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaAFD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTokens)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -316,5 +420,15 @@
         private Button button2;
         private TextBox tbLexema;
         private Label lexemares;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private TextBox identificadorBox;
+        private TextBox numeroBox;
+        private TextBox programaBox;
+        private DataGridView tablaTokens;
+        private Button clasificarBoton;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn Column6;
     }
 }

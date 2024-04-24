@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Runtime_Compiladores_Proyecto
 {
@@ -11,6 +12,8 @@ namespace Runtime_Compiladores_Proyecto
     {
         AFN afn = new AFN();
         AFD afd = new AFD();
+        static List<string> Palabras = new List<string>() { "if", "then", "else", "end", "repeat", "until", "read", "write" };
+        static List<string> Simbolos = new List<string>() { "+", "-", "*", "/", "=", "<", ">", "(", ")", ";", ":=" };
         public Form1()
         {
             InitializeComponent();
@@ -350,6 +353,102 @@ namespace Runtime_Compiladores_Proyecto
             {
                 lexemares.Text = "No Pertenece";
             }
+        }
+
+        private void clasificarBoton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (identificadorBox.Text != "" && numeroBox.Text != "" && programaBox.Text != "")
+                {
+                    tablaTokens.Rows.Clear(); //Reiniciar contenido de tabla
+
+                    //Iniciar proceso de AFN/AFD del identificador y numero
+                    //Posfijas
+                    string posID = ConvertirAPosfija(convierteExplicita(identificadorBox.Text));
+                    string posNum = ConvertirAPosfija(convierteExplicita(numeroBox.Text));
+                    //AFNs
+                    AFN AFN_ID = new AFN();
+                    AFN_ID.conviertePosfijaEnAFN(posID);
+                    AFN AFN_Num = new AFN();
+                    AFN_Num.conviertePosfijaEnAFN(posNum);
+                    //AFDs
+                    AFD AFD_ID = new AFD();
+                    AFD_ID.construyeAFD(AFN_ID);
+                    AFD AFD_Num = new AFD();
+                    AFD_Num.construyeAFD(AFN_Num);
+
+                    List<String[]> Code = new List<String[]>(); //Cachitos de codigo en cada linea
+                    int Line = 0; //Linea actual al imprimir en grid
+
+                    for (int i = 0; i < programaBox.Lines.Length; i++)
+                    {
+                        // Leer linea por linea textbox y separar codigo
+                        string Trim = programaBox.Lines[i].Trim();
+                        String[] lineArr = Trim.Split(' ');
+                        Code.Add(lineArr);
+                        foreach (string s in lineArr)
+                        {
+                            // Leer cada renglon e identificar el codigo 
+
+                            // Identificar renglon vacio
+                            if (s == null || s == "") { Line--; }//Hacer nada, contrarestar recorrimiento de linea en tabla
+                            // Prueba palabra reservada
+                            else if (Palabras.Contains(s))
+                            {
+                                tablaTokens.Rows.Add(s, s);
+                            }
+                            // Prueba Simbolo especial
+                            else if (Simbolos.Contains(s))
+                            {
+                                tablaTokens.Rows.Add(s, s);
+                            }
+                            // Pprueba AFD Numero
+                            else if (AFD_Num.lexemaValido(s, AFD_Num.DESTADOS[0]))
+                            {
+                                tablaTokens.Rows.Add("número", s);
+                            }
+                            // Prueba AFD Identificador
+                            else if (AFD_ID.lexemaValido(s, AFD_ID.DESTADOS[0]))
+                            {
+                                tablaTokens.Rows.Add("ídentificador", s);
+                            }
+                            // Error lexico
+                            else if (s != "")
+                            {
+                                tablaTokens.Rows.Add("Error Léxico", s);
+                                tablaTokens.Rows[Line].Cells[0].Style.ForeColor = Color.Red;
+                                tablaTokens.Rows[Line].Cells[1].Style.ForeColor = Color.Red;
+                            }
+                            Line++;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No estan rellenados todos los campos.");
+                }
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show("Error: " + E.Message);
+            }
+        }
+
+
+
+        private void afdButton_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void afnButton_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void conversionButton_Click_1(object sender, EventArgs e)
+        {
         }
     }
 }
