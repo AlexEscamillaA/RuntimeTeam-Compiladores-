@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\leopu\\Source\\Repos\\RT\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj": {}
+    "C:\\Users\\leopu\\source\\repos\\RT\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj": {}
   },
   "projects": {
-    "C:\\Users\\leopu\\Source\\Repos\\RT\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj": {
+    "C:\\Users\\leopu\\source\\repos\\RT\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leopu\\Source\\Repos\\RT\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj",
+        "projectUniqueName": "C:\\Users\\leopu\\source\\repos\\RT\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj",
         "projectName": "Runtime Compiladores Proyecto",
-        "projectPath": "C:\\Users\\leopu\\Source\\Repos\\RT\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj",
+        "projectPath": "C:\\Users\\leopu\\source\\repos\\RT\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\Runtime Compiladores Proyecto.csproj",
         "packagesPath": "C:\\Users\\leopu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leopu\\Source\\Repos\\RT\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\obj\\",
+        "outputPath": "C:\\Users\\leopu\\source\\repos\\RT\\RuntimeTeam-Compiladores-\\Runtime Compiladores Proyecto\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\leopu\\AppData\\Roaming\\NuGet\\NuGet.Config",

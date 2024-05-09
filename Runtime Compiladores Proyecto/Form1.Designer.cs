@@ -61,9 +61,12 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clasificarBoton = new System.Windows.Forms.Button();
+            this.construirTablaM = new System.Windows.Forms.Button();
+            this.tablaAnalisis = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.tablaAFN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaAFD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTokens)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaAnalisis)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -351,9 +354,31 @@
             this.clasificarBoton.UseVisualStyleBackColor = true;
             this.clasificarBoton.Click += new System.EventHandler(this.clasificarBoton_Click);
             // 
+            // construirTablaM
+            // 
+            this.construirTablaM.Location = new System.Drawing.Point(1685, 86);
+            this.construirTablaM.Name = "construirTablaM";
+            this.construirTablaM.Size = new System.Drawing.Size(428, 29);
+            this.construirTablaM.TabIndex = 29;
+            this.construirTablaM.Text = "Construir Tabla de Análisis Sintáctico M";
+            this.construirTablaM.UseVisualStyleBackColor = true;
+            this.construirTablaM.Click += new System.EventHandler(this.construirTablaM_Click);
+            // 
+            // tablaAnalisis
+            // 
+            this.tablaAnalisis.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaAnalisis.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.tablaAnalisis.Location = new System.Drawing.Point(1685, 160);
+            this.tablaAnalisis.Name = "tablaAnalisis";
+            this.tablaAnalisis.RowHeadersWidth = 51;
+            this.tablaAnalisis.Size = new System.Drawing.Size(428, 491);
+            this.tablaAnalisis.TabIndex = 30;
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(1735, 814);
+            this.ClientSize = new System.Drawing.Size(2202, 814);
+            this.Controls.Add(this.tablaAnalisis);
+            this.Controls.Add(this.construirTablaM);
             this.Controls.Add(this.clasificarBoton);
             this.Controls.Add(this.tablaTokens);
             this.Controls.Add(this.programaBox);
@@ -387,6 +412,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablaAFN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaAFD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTokens)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaAnalisis)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -430,5 +456,7 @@
         private Button clasificarBoton;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
+        private Button construirTablaM;
+        private DataGridView tablaAnalisis;
     }
 }

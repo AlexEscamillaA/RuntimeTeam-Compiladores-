@@ -411,12 +411,12 @@ namespace Runtime_Compiladores_Proyecto
                             // Prueba AFD Identificador
                             else if (AFD_ID.lexemaValido(s, AFD_ID.DESTADOS[0]))
                             {
-                                tablaTokens.Rows.Add("ídentificador", s);
+                                tablaTokens.Rows.Add("identificador", s);
                             }
                             // Error lexico
                             else if (s != "")
                             {
-                                tablaTokens.Rows.Add("Error Léxico", s);
+                                tablaTokens.Rows.Add("error", s);
                                 tablaTokens.Rows[Line].Cells[0].Style.ForeColor = Color.Red;
                                 tablaTokens.Rows[Line].Cells[1].Style.ForeColor = Color.Red;
                             }
@@ -426,7 +426,7 @@ namespace Runtime_Compiladores_Proyecto
                 }
                 else
                 {
-                    MessageBox.Show("No estan rellenados todos los campos.");
+                    MessageBox.Show("Faltan campos a rellenar");
                 }
             }
             catch (Exception E)
@@ -449,6 +449,333 @@ namespace Runtime_Compiladores_Proyecto
 
         private void conversionButton_Click_1(object sender, EventArgs e)
         {
+        }
+
+        private void construirTablaM_Click(object sender, EventArgs e)
+        {
+            produccionLenguaje();
+        }
+
+        private void produccionLenguaje()
+        {
+
+            // Carga directamente la información
+
+            List<(string, List<List<string>>)> producciones = new List<(string, List<List<string>>)>()
+            {
+        // programa -> secuencia-sent
+        ("programa", new List<List<string>>
+        {
+            new List<string> { "secuencia-sent" }
+        }),
+
+        // secuencia-sent -> sentencia secuencia-sent'
+        ("secuencia-sent", new List<List<string>>
+        {
+            new List<string> { "sentencia", "secuencia-sent'" }
+        }),
+
+        // sentencia -> sent-if | sent-repeat | sent-assign | sent-read | sent-write
+        ("sentencia", new List<List<string>>
+        {
+            new List<string> { "sent-if" },
+            new List<string> { "sent-repeat" },
+            new List<string> { "sent-assign" },
+            new List<string> { "sent-read" },
+            new List<string> { "sent-write" }
+        }),
+
+        // sent-if -> if exp then secuencia-sent sent-if'
+        ("sent-if", new List<List<string>>
+        {
+            new List<string> { "if", "exp", "then", "secuencia-sent", "sent-if'" }
+        }),
+
+        // sent-repeat -> repeat secuencia-sent until exp
+        ("sent-repeat", new List<List<string>>
+        {
+            new List<string> { "repeat", "secuencia-sent", "until", "exp" }
+        }),
+
+        // sent-assign -> identificador := exp
+        ("sent-assign", new List<List<string>>
+        {
+            new List<string> { "identificador", ":=", "exp" }
+        }),
+
+        // sent-read -> read identificador
+        ("sent-read", new List<List<string>>
+        {
+            new List<string> { "read", "identificador" }
+        }),
+
+        // sent-write -> write exp
+        ("sent-write", new List<List<string>>
+        {
+            new List<string> { "write", "exp" }
+        }),
+
+        // exp -> exp-simple exp'
+        ("exp", new List<List<string>>
+        {
+            new List<string> { "exp-simple", "exp'" }
+        }),
+
+        // op-comp -> < | > | =
+        ("op-comp", new List<List<string>>
+        {
+            new List<string> { "<" },
+            new List<string> { ">" },
+            new List<string> { "=" }
+        }),
+
+        // exp-simple -> term exp-simple'
+        ("exp-simple", new List<List<string>>
+        {
+            new List<string> { "term", "exp-simple'" }
+        }),
+
+        // opsuma -> + | -
+        ("opsuma", new List<List<string>>
+        {
+            new List<string> { "+" },
+            new List<string> { "-" }
+        }),
+
+        // term -> factor term'
+        ("term", new List<List<string>>
+        {
+            new List<string> { "factor", "term'" }
+        }),
+
+        // opmult -> * | /
+        ("opmult", new List<List<string>>
+        {
+            new List<string> { "*" },
+            new List<string> { "/" }
+        }),
+
+        // factor -> ( exp ) | numero | identificador
+        ("factor", new List<List<string>>
+        {
+            new List<string> { "(", "exp", ")" },
+            new List<string> { "numero" },
+            new List<string> { "identificador" }
+        }),
+
+        // secuencia-sent' -> ; sentencia secuencia-sent' | ε
+        ("secuencia-sent'", new List<List<string>>
+        {
+            new List<string> { ";", "sentencia", "secuencia-sent'" },
+            new List<string> { "ε" }
+        }),
+
+        // exp-simple' -> opsuma term exp-simple' | ε
+        ("exp-simple'", new List<List<string>>
+        {
+            new List<string> { "opsuma", "term", "exp-simple'" },
+            new List<string> { "ε" }
+        }),
+
+        // term' -> opmult factor term' | ε
+        ("term'", new List<List<string>>
+        {
+            new List<string> { "opmult", "factor", "term'" },
+            new List<string> { "ε" }
+        }),
+
+        // sent-if' -> end | else secuencia-sent end
+        ("sent-if'", new List<List<string>>
+        {
+            new List<string> { "end" },
+            new List<string> { "else", "secuencia-sent", "end" }
+        }),
+
+        // exp' -> op-comp exp-simple | ε
+        ("exp'", new List<List<string>>
+        {
+            new List<string> { "op-comp", "exp-simple" },
+            new List<string> { "ε" }
+        })
+    };
+
+
+            // Crea Primeros
+
+
+        List<(string, List<string>)> primeros = new List<(string, List<string>)>()
+        {
+            ("programa", new List<string> { "if", "repeat", "identificador", "read", "write" }),
+            ("secuencia-sent", new List<string> { "if", "repeat", "identificador", "read", "write" }),
+            ("sentencia", new List<string> { "if", "repeat", "identificador", "read", "write" }),
+            ("sent-if", new List<string> { "if" }),
+            ("sent-repeat", new List<string> { "repeat" }),
+            ("sent-assign", new List<string> { "identificador" }),
+            ("sent-read", new List<string> { "read" }),
+            ("sent-write", new List<string> { "write" }),
+            ("exp", new List<string> { "(", "numero", "identificador" }),
+            ("op-comp", new List<string> { "<", ">", "=" }),
+            ("exp-simple", new List<string> { "(", "numero", "identificador" }),
+            ("opsuma", new List<string> { "+", "-" }),
+            ("term", new List<string> { "(", "numero", "identificador" }),
+            ("opmult", new List<string> { "*", "/" }),
+            ("factor", new List<string> { "(", "numero", "identificador" }),
+            ("secuencia-sent'", new List<string> { ";", "ε" }),
+            ("exp-simple'", new List<string> { "+", "-", "ε" }),
+            ("term'", new List<string> { "*", "/", "ε" }),
+            ("sent-if'", new List<string> { "end", "else" }),
+            ("exp'", new List<string> { "<", ">", "=", "ε" }),
+            ("if", new List<string> { "if" }),
+            ("repeat", new List<string> { "repeat" }),
+            ("identificador", new List<string> { "identificador" }),
+            ("read", new List<string> { "read" }),
+            ("write", new List<string> { "write" }),
+            ("(", new List<string> { "(" }),
+            ("numero", new List<string> { "numero" }),
+            ("then", new List<string> { "then" }),
+            ("until", new List<string> { "until" }),
+            (":=", new List<string> { ":=" }),
+            ("else", new List<string> { "else" }),
+            ("end", new List<string> { "end" }),
+            (";", new List<string> { ";" }),
+            ("+", new List<string> { "+" }),
+            ("-", new List<string> { "-" }),
+            ("*", new List<string> { "*" }),
+            ("/", new List<string> { "/" }),
+            ("<", new List<string> { "<" }),
+            (">", new List<string> { ">" }),
+            ("=", new List<string> { "=" })
+        };
+
+        // Siguientes
+
+        List<(string, List<string>)> siguientes = new List<(string, List<string>)>()
+        {
+            ("programa", new List<string> { "$" }),
+            ("secuencia-sent", new List<string> { "end", "else", "until", "$" }),
+            ("sentencia", new List<string> { "end", ";", "else", "until", "$" }),
+            ("sent-if", new List<string> { "end", ";", "else", "until", "$" }),
+            ("sent-repeat", new List<string> { "end", ";", "else", "until", "$" }),
+            ("sent-assign", new List<string> { "end", ";", "else", "until", "$" }),
+            ("sent-read", new List<string> { "end", ";", "else", "until", "$" }),
+            ("sent-write", new List<string> { "end", ";", "else", "until", "$" }),
+            ("exp", new List<string> { "end", ";", "else", "until", "$", ")", "then" }),
+            ("op-comp", new List<string> { "(", "numero", "identificador" }),
+            ("exp-simple", new List<string> { "<", ">", "=", "end", "else", "until", "then", ";", ")", "$" }),
+            ("opsuma", new List<string> { "(", "numero", "identificador" }),
+            ("term", new List<string> { "+", "-", "<", ">", "=", "end", "else", "until", "then", ";", ")", "$" }),
+            ("opmult", new List<string> { "(", "numero", "identificador" }),
+            ("factor", new List<string> { "*", "/", "+", "-", "<", ">", "=", "end", "else", "until", "then", ";", ")", "$" }),
+            ("secuencia-sent'", new List<string> { "end", "else", "until", "$" }),
+            ("sent-if'", new List<string> { "end", ";", "else", "until", "$" }),
+            ("exp-simple'", new List<string> { "<", ">", "=", "end", "else", "until", "then", ";", ")", "$" }),
+            ("term'", new List<string> { "+", "-", "<", ">", "=", "end", "else", "until", "then", ";", ")", "$" }),
+            ("exp'", new List<string> { "end", ";", "else", "until", "$", ")", "then" })
+        };
+        llenaTablaAnalisis(producciones, primeros, siguientes);
+        }
+
+        private void llenaTablaAnalisis(List<(string, List<List<string>>)> producciones, List<(string, List<string>)> primeros, List<(string, List<string>)> siguientes)
+        {
+            // Lista de terminales
+            var terminales = new List<string> { "if", "repeat", "identificador", "read", "write", "numero", "then", "until", ":=", "else", "end", "(", ")", ";", "+","-", "*","/", "<", ">", "=", "$" };
+            
+            tablaAnalisis.ColumnCount = terminales.Count + 1; // Inicializar las columnas 
+            tablaAnalisis.Columns[0].Name = "No Terminal"; // Nombrar columna
+
+            // Lista de no terminales
+            var noTerminales = new List<string> { "programa", "secuencia-sent", "secuencia-sent'", "sentencia","sent-if", "sent-if'", "sent-repeat", "sent-assign", "sent-read","sent-write", "exp", "exp'", "op-comp", "exp-simple", "exp-simple'","opsuma", "term", "term'", "opmult", "factor", };
+
+            // Llena los terminales
+            for (int i = 0; i < terminales.Count; i++)
+            {
+                tablaAnalisis.Columns[i + 1].Name = terminales[i];
+            }
+
+            // Llena los no terminales
+            foreach (var nt in noTerminales)
+            {
+                tablaAnalisis.Rows.Add(nt);
+            }
+
+
+            foreach (var produccion in producciones)
+            {
+                var nt = produccion.Item1;
+                var indexNT = noTerminales.IndexOf(nt);
+
+                foreach (var cuerpo in produccion.Item2)
+                {
+                    var primerosCuerpo = obtenerPrimeros(cuerpo, primeros); // Obtiene los primeros de la producción
+
+                    foreach (var terminal in primerosCuerpo.Where(t => t != "ε"))
+                    {
+                        var indexT = terminales.IndexOf(terminal);
+                        if (tablaAnalisis.Rows[indexNT].Cells[indexT + 1].Value == null)
+                        {
+                            tablaAnalisis.Rows[indexNT].Cells[indexT + 1].Value = $"{nt}->{string.Join(" ", cuerpo)}";
+                        }
+                    }
+
+                    if (!primerosCuerpo.Contains("ε")) // Si los primeros de la producción incluyen cadena vacía
+                    {
+                        var siguienteNoTerminal = siguientes.FirstOrDefault(x => x.Item1 == nt).Item2; // Encuentra los siguientes del no terminal
+
+                        if (siguienteNoTerminal != null)
+                        {
+                            foreach (var siguiente in siguienteNoTerminal)
+                            {
+                                var indexT = terminales.IndexOf(siguiente);
+                                if (tablaAnalisis.Rows[indexNT].Cells[indexT + 1].Value == null)
+                                {
+                                    tablaAnalisis.Rows[indexNT].Cells[indexT + 1].Value = $"{nt}->ε";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+
+        private List<string> obtenerPrimeros(List<string> produccionCuerpo, List<(string, List<string>)> primeros)
+        {
+            /*var primerosProduccion = produccionCuerpo
+            .SelectMany(simbolo =>
+            {
+                return primeros.FirstOrDefault(x => x.Item1 == simbolo).Item2 ?? Enumerable.Empty<string>();
+            })
+            .TakeWhile(primerosSimbolo => !primerosSimbolo.Contains("ε"))
+            .ToList();
+
+            return primerosProduccion;*/
+
+
+            var primerosProduccion = new List<string>();
+
+            foreach (var simbolo in produccionCuerpo)
+            {
+                var primerosSimboloTuple = primeros.FirstOrDefault(x => x.Item1 == simbolo);
+                if (primerosSimboloTuple != default)
+                {
+                    var primerosSimbolo = primerosSimboloTuple.Item2;
+
+                    primerosProduccion.AddRange(primerosSimbolo);
+
+                    if (!primerosSimbolo.Contains("ε"))
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    break; // Primeros no definidos
+                }
+            }
+
+            return primerosProduccion;
         }
     }
 }
