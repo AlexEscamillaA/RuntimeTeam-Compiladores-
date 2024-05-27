@@ -63,6 +63,10 @@
             this.clasificarBoton = new System.Windows.Forms.Button();
             this.construirTablaM = new System.Windows.Forms.Button();
             this.tablaAnalisis = new System.Windows.Forms.DataGridView();
+            this.AnalisisLexicoSintactico = new System.Windows.Forms.Button();
+            this.lexicoSintacticoBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.tablaAFN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaAFD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTokens)).BeginInit();
@@ -111,7 +115,7 @@
             // expPostfijaLabel
             // 
             this.expPostfijaLabel.AutoSize = true;
-            this.expPostfijaLabel.Location = new System.Drawing.Point(11, 160);
+            this.expPostfijaLabel.Location = new System.Drawing.Point(12, 133);
             this.expPostfijaLabel.Name = "expPostfijaLabel";
             this.expPostfijaLabel.Size = new System.Drawing.Size(125, 20);
             this.expPostfijaLabel.TabIndex = 2;
@@ -126,14 +130,14 @@
             // 
             // expresionPostfijaResponse
             // 
-            this.expresionPostfijaResponse.Location = new System.Drawing.Point(11, 183);
+            this.expresionPostfijaResponse.Location = new System.Drawing.Point(11, 156);
             this.expresionPostfijaResponse.Name = "expresionPostfijaResponse";
             this.expresionPostfijaResponse.Size = new System.Drawing.Size(332, 27);
             this.expresionPostfijaResponse.TabIndex = 4;
             // 
             // conversionButton
             // 
-            this.conversionButton.Location = new System.Drawing.Point(60, 109);
+            this.conversionButton.Location = new System.Drawing.Point(60, 100);
             this.conversionButton.Name = "conversionButton";
             this.conversionButton.Size = new System.Drawing.Size(217, 29);
             this.conversionButton.TabIndex = 5;
@@ -143,7 +147,7 @@
             // 
             // afnButton
             // 
-            this.afnButton.Location = new System.Drawing.Point(60, 230);
+            this.afnButton.Location = new System.Drawing.Point(60, 189);
             this.afnButton.Name = "afnButton";
             this.afnButton.Size = new System.Drawing.Size(217, 29);
             this.afnButton.TabIndex = 6;
@@ -155,16 +159,16 @@
             // 
             this.tablaAFN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaAFN.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.tablaAFN.Location = new System.Drawing.Point(14, 381);
+            this.tablaAFN.Location = new System.Drawing.Point(14, 264);
             this.tablaAFN.Name = "tablaAFN";
             this.tablaAFN.RowHeadersWidth = 51;
-            this.tablaAFN.Size = new System.Drawing.Size(561, 388);
+            this.tablaAFN.Size = new System.Drawing.Size(329, 274);
             this.tablaAFN.TabIndex = 7;
             // 
             // nEstados
             // 
             this.nEstados.AutoSize = true;
-            this.nEstados.Location = new System.Drawing.Point(166, 284);
+            this.nEstados.Location = new System.Drawing.Point(166, 221);
             this.nEstados.Name = "nEstados";
             this.nEstados.Size = new System.Drawing.Size(44, 20);
             this.nEstados.TabIndex = 9;
@@ -173,7 +177,7 @@
             // numeroEstados
             // 
             this.numeroEstados.AutoSize = true;
-            this.numeroEstados.Location = new System.Drawing.Point(14, 284);
+            this.numeroEstados.Location = new System.Drawing.Point(14, 221);
             this.numeroEstados.Name = "numeroEstados";
             this.numeroEstados.Size = new System.Drawing.Size(146, 20);
             this.numeroEstados.TabIndex = 10;
@@ -182,7 +186,7 @@
             // nEpsilon
             // 
             this.nEpsilon.AutoSize = true;
-            this.nEpsilon.Location = new System.Drawing.Point(204, 341);
+            this.nEpsilon.Location = new System.Drawing.Point(202, 241);
             this.nEpsilon.Name = "nEpsilon";
             this.nEpsilon.Size = new System.Drawing.Size(44, 20);
             this.nEpsilon.TabIndex = 11;
@@ -191,7 +195,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 341);
+            this.label2.Location = new System.Drawing.Point(12, 241);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(184, 20);
             this.label2.TabIndex = 12;
@@ -200,7 +204,7 @@
             // numeroEstadosAFD
             // 
             this.numeroEstadosAFD.AutoSize = true;
-            this.numeroEstadosAFD.Location = new System.Drawing.Point(610, 341);
+            this.numeroEstadosAFD.Location = new System.Drawing.Point(349, 241);
             this.numeroEstadosAFD.Name = "numeroEstadosAFD";
             this.numeroEstadosAFD.Size = new System.Drawing.Size(146, 20);
             this.numeroEstadosAFD.TabIndex = 13;
@@ -209,7 +213,7 @@
             // nEstadosAFD
             // 
             this.nEstadosAFD.AutoSize = true;
-            this.nEstadosAFD.Location = new System.Drawing.Point(762, 341);
+            this.nEstadosAFD.Location = new System.Drawing.Point(501, 241);
             this.nEstadosAFD.Name = "nEstadosAFD";
             this.nEstadosAFD.Size = new System.Drawing.Size(44, 20);
             this.nEstadosAFD.TabIndex = 14;
@@ -219,15 +223,15 @@
             // 
             this.tablaAFD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaAFD.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.tablaAFD.Location = new System.Drawing.Point(610, 381);
+            this.tablaAFD.Location = new System.Drawing.Point(349, 264);
             this.tablaAFD.Name = "tablaAFD";
             this.tablaAFD.RowHeadersWidth = 51;
-            this.tablaAFD.Size = new System.Drawing.Size(561, 388);
+            this.tablaAFD.Size = new System.Drawing.Size(329, 274);
             this.tablaAFD.TabIndex = 15;
             // 
             // afdButton
             // 
-            this.afdButton.Location = new System.Drawing.Point(610, 284);
+            this.afdButton.Location = new System.Drawing.Point(349, 212);
             this.afdButton.Name = "afdButton";
             this.afdButton.Size = new System.Drawing.Size(217, 29);
             this.afdButton.TabIndex = 16;
@@ -238,7 +242,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(610, 44);
+            this.label3.Location = new System.Drawing.Point(349, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 20);
             this.label3.TabIndex = 17;
@@ -246,24 +250,25 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(982, 67);
+            this.button2.Location = new System.Drawing.Point(349, 109);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 27);
             this.button2.TabIndex = 18;
             this.button2.Text = "Validar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // tbLexema
             // 
-            this.tbLexema.Location = new System.Drawing.Point(610, 67);
+            this.tbLexema.Location = new System.Drawing.Point(349, 67);
             this.tbLexema.Name = "tbLexema";
-            this.tbLexema.Size = new System.Drawing.Size(366, 27);
+            this.tbLexema.Size = new System.Drawing.Size(329, 27);
             this.tbLexema.TabIndex = 19;
             // 
             // lexemares
             // 
             this.lexemares.AutoSize = true;
-            this.lexemares.Location = new System.Drawing.Point(610, 109);
+            this.lexemares.Location = new System.Drawing.Point(454, 112);
             this.lexemares.Name = "lexemares";
             this.lexemares.Size = new System.Drawing.Size(0, 20);
             this.lexemares.TabIndex = 20;
@@ -271,7 +276,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1207, 44);
+            this.label4.Location = new System.Drawing.Point(684, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(97, 20);
             this.label4.TabIndex = 21;
@@ -280,7 +285,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1207, 86);
+            this.label5.Location = new System.Drawing.Point(867, 44);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 20);
             this.label5.TabIndex = 22;
@@ -289,7 +294,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1207, 128);
+            this.label6.Location = new System.Drawing.Point(684, 79);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(132, 20);
             this.label6.TabIndex = 23;
@@ -297,24 +302,24 @@
             // 
             // identificadorBox
             // 
-            this.identificadorBox.Location = new System.Drawing.Point(1310, 37);
+            this.identificadorBox.Location = new System.Drawing.Point(787, 37);
             this.identificadorBox.Name = "identificadorBox";
-            this.identificadorBox.Size = new System.Drawing.Size(325, 27);
+            this.identificadorBox.Size = new System.Drawing.Size(74, 27);
             this.identificadorBox.TabIndex = 24;
             // 
             // numeroBox
             // 
-            this.numeroBox.Location = new System.Drawing.Point(1310, 83);
+            this.numeroBox.Location = new System.Drawing.Point(935, 37);
             this.numeroBox.Name = "numeroBox";
-            this.numeroBox.Size = new System.Drawing.Size(325, 27);
+            this.numeroBox.Size = new System.Drawing.Size(78, 27);
             this.numeroBox.TabIndex = 25;
             // 
             // programaBox
             // 
-            this.programaBox.Location = new System.Drawing.Point(1207, 160);
+            this.programaBox.Location = new System.Drawing.Point(684, 144);
             this.programaBox.Multiline = true;
             this.programaBox.Name = "programaBox";
-            this.programaBox.Size = new System.Drawing.Size(428, 201);
+            this.programaBox.Size = new System.Drawing.Size(329, 172);
             this.programaBox.TabIndex = 26;
             // 
             // tablaTokens
@@ -324,10 +329,10 @@
             this.Column5,
             this.Column6});
             this.tablaTokens.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.tablaTokens.Location = new System.Drawing.Point(1207, 381);
+            this.tablaTokens.Location = new System.Drawing.Point(684, 322);
             this.tablaTokens.Name = "tablaTokens";
             this.tablaTokens.RowHeadersWidth = 51;
-            this.tablaTokens.Size = new System.Drawing.Size(428, 388);
+            this.tablaTokens.Size = new System.Drawing.Size(329, 216);
             this.tablaTokens.TabIndex = 27;
             // 
             // Column5
@@ -346,9 +351,9 @@
             // 
             // clasificarBoton
             // 
-            this.clasificarBoton.Location = new System.Drawing.Point(1418, 124);
+            this.clasificarBoton.Location = new System.Drawing.Point(822, 70);
             this.clasificarBoton.Name = "clasificarBoton";
-            this.clasificarBoton.Size = new System.Drawing.Size(217, 29);
+            this.clasificarBoton.Size = new System.Drawing.Size(191, 29);
             this.clasificarBoton.TabIndex = 28;
             this.clasificarBoton.Text = "Clasificar tokens";
             this.clasificarBoton.UseVisualStyleBackColor = true;
@@ -356,9 +361,9 @@
             // 
             // construirTablaM
             // 
-            this.construirTablaM.Location = new System.Drawing.Point(1685, 86);
+            this.construirTablaM.Location = new System.Drawing.Point(1019, 35);
             this.construirTablaM.Name = "construirTablaM";
-            this.construirTablaM.Size = new System.Drawing.Size(428, 29);
+            this.construirTablaM.Size = new System.Drawing.Size(329, 29);
             this.construirTablaM.TabIndex = 29;
             this.construirTablaM.Text = "Construir Tabla de Análisis Sintáctico M";
             this.construirTablaM.UseVisualStyleBackColor = true;
@@ -368,15 +373,54 @@
             // 
             this.tablaAnalisis.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaAnalisis.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.tablaAnalisis.Location = new System.Drawing.Point(1685, 160);
+            this.tablaAnalisis.Location = new System.Drawing.Point(1019, 74);
             this.tablaAnalisis.Name = "tablaAnalisis";
             this.tablaAnalisis.RowHeadersWidth = 51;
-            this.tablaAnalisis.Size = new System.Drawing.Size(428, 491);
+            this.tablaAnalisis.Size = new System.Drawing.Size(329, 464);
             this.tablaAnalisis.TabIndex = 30;
+            // 
+            // AnalisisLexicoSintactico
+            // 
+            this.AnalisisLexicoSintactico.Location = new System.Drawing.Point(1354, 35);
+            this.AnalisisLexicoSintactico.Name = "AnalisisLexicoSintactico";
+            this.AnalisisLexicoSintactico.Size = new System.Drawing.Size(567, 31);
+            this.AnalisisLexicoSintactico.TabIndex = 33;
+            this.AnalisisLexicoSintactico.Text = "Análisis Léxico y Sintáctico del programa  en lenguaje TINY";
+            this.AnalisisLexicoSintactico.UseVisualStyleBackColor = true;
+            this.AnalisisLexicoSintactico.Click += new System.EventHandler(this.AnalisisLexicoSintactico_Click_1);
+            // 
+            // lexicoSintacticoBox
+            // 
+            this.lexicoSintacticoBox.ForeColor = System.Drawing.Color.Red;
+            this.lexicoSintacticoBox.Location = new System.Drawing.Point(1354, 74);
+            this.lexicoSintacticoBox.Multiline = true;
+            this.lexicoSintacticoBox.Name = "lexicoSintacticoBox";
+            this.lexicoSintacticoBox.Size = new System.Drawing.Size(567, 85);
+            this.lexicoSintacticoBox.TabIndex = 34;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1354, 163);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(263, 20);
+            this.label7.TabIndex = 35;
+            this.label7.Text = "Árbol de Análisis Sintáctico Resultante";
+            // 
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(1354, 186);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(567, 352);
+            this.treeView1.TabIndex = 36;
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(2202, 814);
+            this.ClientSize = new System.Drawing.Size(1934, 591);
+            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lexicoSintacticoBox);
+            this.Controls.Add(this.AnalisisLexicoSintactico);
             this.Controls.Add(this.tablaAnalisis);
             this.Controls.Add(this.construirTablaM);
             this.Controls.Add(this.clasificarBoton);
@@ -458,5 +502,9 @@
         private DataGridViewTextBoxColumn Column6;
         private Button construirTablaM;
         private DataGridView tablaAnalisis;
+        private Button AnalisisLexicoSintactico;
+        private TextBox lexicoSintacticoBox;
+        private Label label7;
+        private TreeView treeView1;
     }
 }

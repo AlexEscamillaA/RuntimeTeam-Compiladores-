@@ -10,6 +10,7 @@ namespace Runtime_Compiladores_Proyecto
 {
     public partial class Form1 : Form
     {
+        List<Token> tokens = new List<Token>();
         AFN afn = new AFN();
         AFD afd = new AFD();
         static List<string> Palabras = new List<string>() { "if", "then", "else", "end", "repeat", "until", "read", "write" };
@@ -207,7 +208,7 @@ namespace Runtime_Compiladores_Proyecto
             else return 0;
         }
 
-        private void afnButton_Click(object sender, EventArgs e)
+        private void afnButton_Click_1(object sender, EventArgs e)
         {
             // LIMPIA LAS COLUMNAS Y FILAS DE LA TABLA
             tablaAFN.Columns.Clear();
@@ -293,7 +294,7 @@ namespace Runtime_Compiladores_Proyecto
 
         // REVISIÓN: AFD
 
-        private void afdButton_Click(object sender, EventArgs e)
+        private void afdButton_Click_1(object sender, EventArgs e)
         {
             // CREA EL AFD
             afd.construyeAFD(afn);
@@ -338,7 +339,7 @@ namespace Runtime_Compiladores_Proyecto
         }
 
         //Boton para validar que el lexema compla o no con el lenguaje de la expresion regular
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
         {
             //INTENTA VALIDAR EL LEXEMA CON ValidaLema CON EL AFD YA CONSTRUIDO
             try
@@ -357,6 +358,9 @@ namespace Runtime_Compiladores_Proyecto
 
         private void clasificarBoton_Click(object sender, EventArgs e)
         {
+            //limpiamos la lista de tokens
+            lexicoSintacticoBox.Text = "";
+            tokens.Clear();
             try
             {
                 if (identificadorBox.Text != "" && numeroBox.Text != "" && programaBox.Text != "")
@@ -397,28 +401,35 @@ namespace Runtime_Compiladores_Proyecto
                             else if (Palabras.Contains(s))
                             {
                                 tablaTokens.Rows.Add(s, s);
+                                tokens.Add(new Token(s, s));
                             }
                             // Prueba Simbolo especial
                             else if (Simbolos.Contains(s))
                             {
                                 tablaTokens.Rows.Add(s, s);
+                                tokens.Add(new Token(s, s));
                             }
                             // Pprueba AFD Numero
                             else if (AFD_Num.lexemaValido(s, AFD_Num.DESTADOS[0]))
                             {
                                 tablaTokens.Rows.Add("número", s);
+                                tokens.Add(new Token(s, "número"));
                             }
                             // Prueba AFD Identificador
                             else if (AFD_ID.lexemaValido(s, AFD_ID.DESTADOS[0]))
                             {
                                 tablaTokens.Rows.Add("identificador", s);
+                                tokens.Add(new Token(s, "identificador"));
                             }
                             // Error lexico
                             else if (s != "")
                             {
                                 tablaTokens.Rows.Add("error", s);
+                                tokens.Add(new Token(s, "error"));
                                 tablaTokens.Rows[Line].Cells[0].Style.ForeColor = Color.Red;
                                 tablaTokens.Rows[Line].Cells[1].Style.ForeColor = Color.Red;
+                                lexicoSintacticoBox.Text += "Linea " + (i + 1) + ". " + s + " No se reconoce";
+
                             }
                             Line++;
                         }
@@ -435,20 +446,12 @@ namespace Runtime_Compiladores_Proyecto
             }
         }
 
-
-
-        private void afdButton_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void afnButton_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void conversionButton_Click_1(object sender, EventArgs e)
         {
+            string expresionRegular = expresionRegularResponse.Text;
+            string expresionExplicita = convierteExplicita(expresionRegular);
+            string expresionPostfija = ConvertirAPosfija(expresionExplicita);
+            expresionPostfijaResponse.Text = expresionPostfija;
         }
 
         private void construirTablaM_Click(object sender, EventArgs e)
@@ -603,7 +606,7 @@ namespace Runtime_Compiladores_Proyecto
             // Crea Primeros
 
 
-        List<(string, List<string>)> primeros = new List<(string, List<string>)>()
+            List<(string, List<string>)> primeros = new List<(string, List<string>)>()
         {
             ("programa", new List<string> { "if", "repeat", "identificador", "read", "write" }),
             ("secuencia-sent", new List<string> { "if", "repeat", "identificador", "read", "write" }),
@@ -647,9 +650,9 @@ namespace Runtime_Compiladores_Proyecto
             ("=", new List<string> { "=" })
         };
 
-        // Siguientes
+            // Siguientes
 
-        List<(string, List<string>)> siguientes = new List<(string, List<string>)>()
+            List<(string, List<string>)> siguientes = new List<(string, List<string>)>()
         {
             ("programa", new List<string> { "$" }),
             ("secuencia-sent", new List<string> { "end", "else", "until", "$" }),
@@ -672,19 +675,23 @@ namespace Runtime_Compiladores_Proyecto
             ("term'", new List<string> { "+", "-", "<", ">", "=", "end", "else", "until", "then", ";", ")", "$" }),
             ("exp'", new List<string> { "end", ";", "else", "until", "$", ")", "then" })
         };
-        llenaTablaAnalisis(producciones, primeros, siguientes);
+            llenaTablaAnalisis(producciones, primeros, siguientes);
         }
 
         private void llenaTablaAnalisis(List<(string, List<List<string>>)> producciones, List<(string, List<string>)> primeros, List<(string, List<string>)> siguientes)
         {
+            tablaAnalisis.Rows.Clear();
+
             // Lista de terminales
-            var terminales = new List<string> { "if", "repeat", "identificador", "read", "write", "numero", "then", "until", ":=", "else", "end", "(", ")", ";", "+","-", "*","/", "<", ">", "=", "$" };
-            
-            tablaAnalisis.ColumnCount = terminales.Count + 1; // Inicializar las columnas 
+            var terminales = new List<string> { "if", "repeat", "identificador", "read", "write", "numero", "then", "until", ":=", "else", "end", "(", ")", ";", "+", "-", "*", "/", "<", ">", "=", "$" };
+
+            tablaAnalisis.ColumnCount = terminales.Count + 1; // Inicializar las columnas
             tablaAnalisis.Columns[0].Name = "No Terminal"; // Nombrar columna
 
             // Lista de no terminales
-            var noTerminales = new List<string> { "programa", "secuencia-sent", "secuencia-sent'", "sentencia","sent-if", "sent-if'", "sent-repeat", "sent-assign", "sent-read","sent-write", "exp", "exp'", "op-comp", "exp-simple", "exp-simple'","opsuma", "term", "term'", "opmult", "factor", };
+            var noTerminales = new List<string> { "programa", "secuencia-sent", "secuencia-sent'", "sentencia", "sent-if", "sent-if'", "sent-repeat", "sent-assign", "sent-read", "sent-write", "exp", "exp'", "op-comp", "exp-simple", "exp-simple'", "opsuma", "term", "term'", "opmult", "factor", };
+
+            TablaM analizador = new TablaM(terminales);
 
             // Llena los terminales
             for (int i = 0; i < terminales.Count; i++)
@@ -699,25 +706,47 @@ namespace Runtime_Compiladores_Proyecto
             }
 
 
+
             foreach (var produccion in producciones)
             {
+
                 var nt = produccion.Item1;
                 var indexNT = noTerminales.IndexOf(nt);
+                Dictionary<string, List<string>> currentNTDictionary = new Dictionary<string, List<string>>();
 
                 foreach (var cuerpo in produccion.Item2)
                 {
+                    //textBox1.Text += nt + Environment.NewLine;
+
                     var primerosCuerpo = obtenerPrimeros(cuerpo, primeros); // Obtiene los primeros de la producción
 
-                    foreach (var terminal in primerosCuerpo.Where(t => t != "ε"))
+                    /*
+                    foreach (string s in primerosCuerpo) {
+
+                            textBox1.Text += s + Environment.NewLine;
+                    }
+
+
+                    textBox1.Text += Environment.NewLine;*/
+
+
+
+
+
+                    foreach (var terminal in primerosCuerpo.Where(t => t != "ε")) //busca todos los terminales que no sean epsilon
                     {
-                        var indexT = terminales.IndexOf(terminal);
-                        if (tablaAnalisis.Rows[indexNT].Cells[indexT + 1].Value == null)
+
+                        var indexT = terminales.IndexOf(terminal); // obtiene la columna -1 de donde se va a colocar la produccion en la tabla
+
+                        if (tablaAnalisis.Rows[indexNT].Cells[indexT + 1].Value == null) //por alguna razon hace la verificacion de que la tabla este vacia
                         {
                             tablaAnalisis.Rows[indexNT].Cells[indexT + 1].Value = $"{nt}->{string.Join(" ", cuerpo)}";
+                            //a;adir la produccion como un estado NTLL1
+                            currentNTDictionary.Add(terminal, cuerpo);
                         }
                     }
 
-                    if (!primerosCuerpo.Contains("ε")) // Si los primeros de la producción incluyen cadena vacía
+                    if (primerosCuerpo.Contains("ε")) // Si los primeros de la producción incluyen cadena vacía
                     {
                         var siguienteNoTerminal = siguientes.FirstOrDefault(x => x.Item1 == nt).Item2; // Encuentra los siguientes del no terminal
 
@@ -728,54 +757,113 @@ namespace Runtime_Compiladores_Proyecto
                                 var indexT = terminales.IndexOf(siguiente);
                                 if (tablaAnalisis.Rows[indexNT].Cells[indexT + 1].Value == null)
                                 {
-                                    tablaAnalisis.Rows[indexNT].Cells[indexT + 1].Value = $"{nt}->ε";
+                                    tablaAnalisis.Rows[indexNT].Cells[indexT + 1].Value = $"{nt}->{string.Join(" ", cuerpo)}"; ;
+                                    currentNTDictionary.Add(siguiente, cuerpo);
                                 }
                             }
                         }
+
+
                     }
+
+
+
                 }
+
+                analizador.agregarDerivacion(nt, currentNTDictionary);
+
             }
 
 
+            analizador.simboloInicial = producciones[0].Item1;
+
+            treeView1.Nodes.Clear();
+            if (analizador.analisisSintactico(tokens) != null)
+                treeView1.Nodes.Add(analizador.analisisSintactico(tokens));
+            else
+                lexicoSintacticoBox.Text += Environment.NewLine + "Hay un error sintactico";
+
+            treeView1.ExpandAll();
+            treeView1.Refresh();
+
+
+            /*
+             * 
+            foreach (Token t in tokens) {
+                textBox1.Text += t.valor +"   "+ t.tipo + Environment.NewLine; //acceder a la madre de tokens
+            }
+
+            //acceder a las derivaciones
+
+            foreach (NTLL1 n in analizador.derivaciones) { 
+                textBox1.Text += n.nombre + Environment.NewLine;
+                foreach (var l in terminales) {
+                    if (n.reducciones.ContainsKey(l)){
+                        textBox1.Text += l+ ": " + Environment.NewLine;
+                        foreach (string r in n.reducciones[l]) {
+                            textBox1.Text += r + " || ";
+                        }
+                        textBox1.Text += Environment.NewLine;
+                    }    
+                    
+                }
+                textBox1.Text += Environment.NewLine;
+            }
+            */
         }
 
 
         private List<string> obtenerPrimeros(List<string> produccionCuerpo, List<(string, List<string>)> primeros)
         {
-            /*var primerosProduccion = produccionCuerpo
-            .SelectMany(simbolo =>
-            {
-                return primeros.FirstOrDefault(x => x.Item1 == simbolo).Item2 ?? Enumerable.Empty<string>();
-            })
-            .TakeWhile(primerosSimbolo => !primerosSimbolo.Contains("ε"))
-            .ToList();
 
-            return primerosProduccion;*/
 
 
             var primerosProduccion = new List<string>();
-
-            foreach (var simbolo in produccionCuerpo)
+            int indiceCuerpo = 0;
+            int indicePrimeros = new int();
+            if (produccionCuerpo.Contains("ε"))
             {
-                var primerosSimboloTuple = primeros.FirstOrDefault(x => x.Item1 == simbolo);
-                if (primerosSimboloTuple != default)
-                {
-                    var primerosSimbolo = primerosSimboloTuple.Item2;
-
-                    primerosProduccion.AddRange(primerosSimbolo);
-
-                    if (!primerosSimbolo.Contains("ε"))
-                    {
-                        break;
-                    }
-                }
-                else
-                {
-                    break; // Primeros no definidos
-                }
+                primerosProduccion.Add("ε");
+                return primerosProduccion;
             }
 
+
+            do
+            {
+                for (int i = 0; i < primeros.Count(); i++)
+                {
+                    if (primeros[i].Item1 == produccionCuerpo[indiceCuerpo])
+                        indicePrimeros = i;
+                }
+
+                foreach (string s in primeros[indicePrimeros].Item2.Where(t => t != "ε"))
+                {
+                    primerosProduccion.Add(s);
+                }
+
+                if (!primeros[indicePrimeros].Item2.Contains("ε"))
+                {
+                    return primerosProduccion;
+                }
+                else
+                    indiceCuerpo++;
+            }
+            while (indiceCuerpo < produccionCuerpo.Count());
+
+            //si todos los elementos de la produccion tienen epsilon en sus primeros entonces se agrega epsilon
+            primerosProduccion.Add("ε");
+
             return primerosProduccion;
+        }
+
+        private void AnalisisLexicoSintactico_Click_1(object sender, EventArgs e)
+        {
+            //clasificarBoton(sender, e);
+            if (tokens.Count == 0)
+                MessageBox.Show("Es necesario clasificar los tokens primero");
+            else
+                produccionLenguaje();
+
         }
     }
 }
