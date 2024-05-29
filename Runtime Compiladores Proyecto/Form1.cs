@@ -412,8 +412,8 @@ namespace Runtime_Compiladores_Proyecto
                             // Pprueba AFD Numero
                             else if (AFD_Num.lexemaValido(s, AFD_Num.DESTADOS[0]))
                             {
-                                tablaTokens.Rows.Add("número", s);
-                                tokens.Add(new Token(s, "número"));
+                                tablaTokens.Rows.Add("numero", s);
+                                tokens.Add(new Token(s, "numero"));
                             }
                             // Prueba AFD Identificador
                             else if (AFD_ID.lexemaValido(s, AFD_ID.DESTADOS[0]))
@@ -770,16 +770,16 @@ namespace Runtime_Compiladores_Proyecto
 
                 }
 
-                analizador.agregarDerivacion(nt, currentNTDictionary);
+                analizador.agregarDerivacion(nt, currentNTDictionary); // Se agrega cada derivación con el NT y su respectiva parte del diccionario
 
             }
 
 
             analizador.simboloInicial = producciones[0].Item1;
 
-            treeView1.Nodes.Clear();
+            treeView1.Nodes.Clear(); // Se reinicia el árbol
             if (analizador.analisisSintactico(tokens) != null)
-                treeView1.Nodes.Add(analizador.analisisSintactico(tokens));
+                treeView1.Nodes.Add(analizador.analisisSintactico(tokens)); // Sino está vacío de tokens añade
             else
                 lexicoSintacticoBox.Text += Environment.NewLine + "Hay un error sintactico";
 

@@ -59,15 +59,15 @@ namespace Runtime_Compiladores_Proyecto
 
             //crear variable de retorno
 
-            TreeNode lamamadelamamadelamamadelamama = new TreeNode(simboloInicial);
+            TreeNode TreeNode1 = new TreeNode(simboloInicial);
 
             //crear una pila paralela para los nodos del árbol
 
 
             Stack<TreeNode> pilaNodos = new Stack<TreeNode>();
-            pilaNodos.Push(lamamadelamamadelamamadelamama);
+            pilaNodos.Push(TreeNode1);
 
-            TreeNode currentNode = lamamadelamamadelamamadelamama;
+            TreeNode currentNode = TreeNode1;
 
             int i = 0;
             string a = w[i];
@@ -149,7 +149,7 @@ namespace Runtime_Compiladores_Proyecto
 
 
 
-            return lamamadelamamadelamamadelamama;
+            return TreeNode1;
         }
 
     }
